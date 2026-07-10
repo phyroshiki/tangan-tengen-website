@@ -1,0 +1,686 @@
+<!doctype html>
+
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Product Listing | TANGAN TENGEN ROASTERY</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              error: "#ffb4ab",
+              "surface-container": "#1f1f1f",
+              "surface-container-lowest": "#0e0e0e",
+              "on-error": "#690005",
+              surface: "#131313",
+              "surface-dim": "#131313",
+              "on-secondary-fixed-variant": "#5e420b",
+              "on-primary-fixed-variant": "#5d4200",
+              "primary-fixed-dim": "#f1bf5c",
+              "inverse-on-surface": "#303030",
+              "on-error-container": "#ffdad6",
+              "on-background": "#e2e2e2",
+              "tertiary-container": "#e2ae56",
+              "outline-variant": "#4f4537",
+              "on-tertiary": "#432c00",
+              "secondary-container": "#5e420b",
+              "primary-fixed": "#ffdea6",
+              "surface-container-highest": "#353535",
+              primary: "#feca66",
+              "inverse-primary": "#7b5800",
+              "on-primary": "#412d00",
+              secondary: "#e9c07e",
+              "surface-bright": "#393939",
+              "surface-container-low": "#1b1b1b",
+              "secondary-fixed": "#ffdeac",
+              "on-secondary-container": "#d7af6f",
+              "on-tertiary-fixed-variant": "#604100",
+              "surface-container-high": "#2a2a2a",
+              "error-container": "#93000a",
+              "on-secondary-fixed": "#281900",
+              "primary-container": "#e0af4e",
+              background: "#131313",
+              "tertiary-fixed": "#ffdeac",
+              "on-primary-container": "#5f4300",
+              "inverse-surface": "#e2e2e2",
+              outline: "#9b8f7d",
+              "on-surface-variant": "#d2c5b1",
+              "on-primary-fixed": "#271900",
+              "tertiary-fixed-dim": "#f3be64",
+              tertiary: "#ffca72",
+              "surface-variant": "#353535",
+              "surface-tint": "#f1bf5c",
+              "on-tertiary-container": "#614200",
+              "on-secondary": "#432c00",
+              "on-surface": "#e2e2e2",
+              "secondary-fixed-dim": "#e9c07e",
+              "on-tertiary-fixed": "#281900",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "margin-desktop": "64px",
+              unit: "8px",
+              "container-max": "1280px",
+              gutter: "24px",
+              "margin-mobile": "20px",
+            },
+            fontFamily: {
+              "headline-md": ["EB Garamond"],
+              "label-md": ["Hanken Grotesk"],
+              "headline-lg-mobile": ["EB Garamond"],
+              "headline-sm": ["EB Garamond"],
+              "headline-lg": ["EB Garamond"],
+              "display-lg": ["EB Garamond"],
+              "body-md": ["Hanken Grotesk"],
+              "body-lg": ["Hanken Grotesk"],
+            },
+            fontSize: {
+              "headline-md": ["32px", { lineHeight: "1.2", fontWeight: "500" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "1.4",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg-mobile": [
+                "36px",
+                { lineHeight: "1.2", fontWeight: "500" },
+              ],
+              "headline-sm": ["24px", { lineHeight: "1.3", fontWeight: "500" }],
+              "headline-lg": ["48px", { lineHeight: "1.2", fontWeight: "500" }],
+              "display-lg": [
+                "64px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #131313;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #4f4537;
+        border-radius: 10px;
+      }
+      .card-hover:hover .card-action {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .filter-active {
+        border-bottom: 2px solid #feca66;
+        color: #feca66;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md selection:bg-primary/30 selection:text-primary"
+  >
+    <!-- Header / TopAppBar (Disesuaikan sama dengan warna Home: #1A1615, solid tanpa blur) -->
+    <header
+      class="fixed top-0 w-full z-50 bg-[#1A1615] border-b border-outline-variant/20"
+    >
+      <div
+        class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto"
+      >
+        <a class="flex items-center" href="index.html">
+          <img
+            src="../assets/img/logottr.png"
+            alt="Logo Tangan Tengen"
+            class="h-16 w-auto object-contain hover:opacity-90 transition-opacity"
+          />
+        </a>
+        <nav class="hidden md:flex gap-8">
+          <a
+            class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+            href="index.html"
+            >Home</a
+          >
+          <a
+            class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+            href="product.html"
+            >Produk</a
+          >
+          <!-- HIGHLIGHT AKTIF DI SINI (Untuk halaman Tentang Kami) -->
+          <a
+            class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1"
+            href="aboutus.html"
+            >Tentang Kami</a
+          >
+        </nav>
+        <!-- Tombol Hubungi Kami langsung mengarah ke WhatsApp admin -->
+        <a
+          href="https://wa.me/628123456789?text=Halo%20Tangan%20Tengen%20Roastery,%20saya%20ingin%20bertanya%20mengenai%20layanan%20Anda."
+          target="_blank"
+          class="bg-primary-container text-on-primary-container px-6 py-2 rounded-DEFAULT font-label-md text-label-md hover:opacity-80 active:scale-95 transition-all duration-200 block text-center"
+        >
+          Hubungi Kami
+        </a>
+      </div>
+    </header>
+
+    <main class="pt-32">
+      <!-- Hero Narrative Section -->
+      <section class="px-margin-desktop max-w-container-max mx-auto mb-32">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center">
+          <div class="order-2 lg:order-1">
+            <span
+              class="font-label-md text-label-md text-primary uppercase tracking-widest block mb-4"
+              >Filosofi Kami</span
+            >
+            <h2
+              class="font-display-lg text-display-lg text-primary mb-8 leading-tight"
+            >
+              Cerita Kami
+            </h2>
+            <div
+              class="space-y-6 font-body-lg text-body-lg text-on-surface-variant max-w-xl"
+            >
+              <p>
+                Diambil dari bahasa Jawa,
+                <span class="text-primary italic">Tangan Tengen</span> berarti
+                "Tangan Kanan"—tangan yang melambangkan kebaikan, kesantunan,
+                dan presisi dalam bertindak. Sejak didirikan, filosofi ini
+                mendarah daging dalam setiap butir kopi yang kami sangrai.
+              </p>
+              <p>
+                Kami bukan sekadar roastery. Kami adalah kurator rasa yang
+                percaya bahwa kopi berkualitas lahir dari kemitraan yang jujur
+                dengan petani lokal. Setiap profil sangrai (roast profile) kami
+                kembangkan secara artisanal untuk menonjolkan karakter unik
+                tanah nusantara.
+              </p>
+              <p>
+                Dari tangan petani ke tangan penyeduh, kami berkomitmen menjaga
+                integritas rasa hingga tetes terakhir di cangkir Anda. Inilah
+                dedikasi Tangan Tengen untuk pecinta kopi sejati.
+              </p>
+            </div>
+          </div>
+          <!-- FOTO UTAMA CERITA KAMI (Menggunakan jumbotron.png) -->
+          <div class="order-1 lg:order-2 relative group h-[600px]">
+            <div
+              class="absolute -inset-4 border border-primary/20 translate-x-4 translate-y-4 -z-10 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-700"
+            ></div>
+            <div
+              class="w-full h-full bg-cover bg-center shadow-2xl"
+              style="
+                background-image: url(&quot;../assets/img/IMG_0005.JPG&quot;);
+              "
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bento Photo Gallery -->
+      <section class="bg-surface-container-low py-32">
+        <div class="px-margin-desktop max-w-container-max mx-auto">
+          <div class="text-center mb-16">
+            <h3 class="font-headline-lg text-headline-lg text-primary mb-4">
+              Jejak Langkah Kami
+            </h3>
+            <p
+              class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
+            >
+              Keseharian, Edukasi, &amp; Proses
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-1 md:grid-cols-4 grid-rows-4 md:grid-rows-2 gap-4 h-[1200px] md:h-[700px]"
+          >
+            <!-- BENTO FOTO 1: Proses Roasting (Diubah menggunakan gambar karl-fredrickson) -->
+            <div
+              class="md:col-span-2 md:row-span-2 bento-item relative group overflow-hidden bg-surface-container-highest"
+            >
+              <div
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                style="
+                  background-image: url(&quot;../assets/img/IMG_0008.JPG&quot;);
+                "
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8"
+              >
+                <span class="text-primary font-label-md text-label-md uppercase"
+                  >The Roasting Process</span
+                >
+                <p class="font-headline-sm text-headline-sm">
+                  Presisi dalam Setiap Detik
+                </p>
+              </div>
+            </div>
+
+            <!-- BENTO FOTO 2: Cafe Vibe (Arahkan ke WhatsApp Image Anda yang pertama) -->
+            <div
+              class="md:col-span-1 md:row-span-1 bento-item relative overflow-hidden bg-surface-container-highest"
+            >
+              <div
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                style="
+                  background-image: url(&quot;../assets/img/IMG_0009.JPG&quot;);
+                "
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6"
+              >
+                <p class="font-label-md text-label-md">Space &amp; Calm</p>
+              </div>
+            </div>
+
+            <!-- BENTO FOTO 3: Barista Class / Workshop (Arahkan ke jumbotron.png atau aset lain) -->
+            <div
+              class="md:col-span-1 md:row-span-2 bento-item relative overflow-hidden bg-surface-container-highest"
+            >
+              <div
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                style="
+                  background-image: url(&quot;../assets/img/jumbotron.png&quot;);
+                "
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8"
+              >
+                <span class="text-primary font-label-md text-label-md uppercase"
+                  >Workshop</span
+                >
+                <p class="font-headline-sm text-headline-sm">
+                  Mencetak Penyeduh Handal
+                </p>
+              </div>
+            </div>
+
+            <!-- BENTO FOTO 4: Quality Control (Arahkan ke WhatsApp Image Anda yang kedua) -->
+            <div
+              class="md:col-span-1 md:row-span-1 bento-item relative overflow-hidden bg-surface-container-highest"
+            >
+              <div
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                style="
+                  background-image: url(&quot;../assets/img/IMG_0012.JPG&quot;);
+                "
+              ></div>
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6"
+              >
+                <p class="font-label-md text-label-md">Quality Control</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Client Portfolio Section -->
+      <section class="py-32 px-margin-desktop max-w-container-max mx-auto">
+        <div class="text-center mb-20">
+          <span
+            class="font-label-md text-label-md text-primary uppercase tracking-widest block mb-4"
+            >Kemitraan Terpercaya</span
+          >
+          <h3 class="font-headline-lg text-headline-lg text-on-surface">
+            Client Portfolio
+          </h3>
+        </div>
+        <div
+          class="grid grid-cols-2 md:grid-cols-5 gap-gutter items-center opacity-60"
+        >
+          <div
+            class="flex justify-center p-8 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer border border-outline-variant/10"
+          >
+            <span
+              class="font-headline-sm text-headline-sm font-bold text-on-surface-variant"
+              >LUMINA</span
+            >
+          </div>
+          <div
+            class="flex justify-center p-8 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer border border-outline-variant/10"
+          >
+            <span
+              class="font-headline-sm text-headline-sm font-bold text-on-surface-variant"
+              >KALA</span
+            >
+          </div>
+          <div
+            class="flex justify-center p-8 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer border border-outline-variant/10"
+          >
+            <span
+              class="font-headline-sm text-headline-sm font-bold text-on-surface-variant"
+              >STUDIO X</span
+            >
+          </div>
+          <div
+            class="flex justify-center p-8 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer border border-outline-variant/10"
+          >
+            <span
+              class="font-headline-sm text-headline-sm font-bold text-on-surface-variant"
+              >NOORD</span
+            >
+          </div>
+          <div
+            class="flex justify-center p-8 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer border border-outline-variant/10"
+          >
+            <span
+              class="font-headline-sm text-headline-sm font-bold text-on-surface-variant"
+              >V-OFFICE</span
+            >
+          </div>
+        </div>
+
+        <!-- B2B CTA Card -->
+        <div
+          class="mt-24 p-12 bg-secondary-container rounded-lg flex flex-col md:flex-row justify-between items-center stamped-border"
+        >
+          <div class="mb-8 md:mb-0">
+            <h4
+              class="font-headline-md text-headline-md text-on-secondary-container mb-2"
+            >
+              Ingin menjadi mitra kami?
+            </h4>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Kami menyediakan jasa suplai kopi untuk kafe, kantor, dan hotel
+              dengan profil kustom.
+            </p>
+          </div>
+          <a
+            href="https://wa.me/628123456789?text=Halo%20Tangan%20Tengen,%20saya%20tertarik%20dengan%20paket%20kemitraan%20B2B"
+            target="_blank"
+            class="bg-primary text-on-primary px-12 py-4 font-label-md text-label-md uppercase tracking-widest whitespace-nowrap hover:opacity-90 transition-all text-center"
+          >
+            Hubungi Tim B2B
+          </a>
+        </div>
+      </section>
+
+      <!-- Barista Class Teaser (Asymmetric) -->
+      <section
+        class="py-32 px-margin-desktop max-w-container-max mx-auto overflow-hidden"
+      >
+        <div class="flex flex-col md:flex-row items-center gap-16">
+          <div class="w-full md:w-1/3">
+            <h3 class="font-headline-lg text-headline-lg text-primary mb-6">
+              Barista Class
+            </h3>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+              Kami membuka pintu studio bagi siapa saja yang ingin mendalami
+              seni menyeduh. Mulai dari pemula hingga profesional, kurikulum
+              kami dirancang untuk mengasah sensitivitas rasa dan teknik teknis.
+            </p>
+            <a
+              class="inline-flex items-center space-x-2 text-primary font-label-md text-label-md group uppercase tracking-widest"
+              href="https://wa.me/628123456789?text=Halo%20Tangan%20Tengen,%20saya%20ingin%20melihat%20jadwal%20Kelas%20Barista"
+              target="_blank"
+            >
+              <span>Lihat Jadwal Kelas</span>
+              <span
+                class="material-symbols-outlined transition-transform group-hover:translate-x-2"
+                >arrow_forward</span
+              >
+            </a>
+          </div>
+          <div class="w-full md:w-2/3 grid grid-cols-2 gap-4">
+            <!-- FOTO TEASER KELAS BARISTA 1 (Menggunakan karl-fredrickson-TYI.png) -->
+            <div
+              class="h-64 md:h-[450px] bg-cover bg-center rounded-lg"
+              style="
+                background-image: url(&quot;../assets/img/karl-fredrickson-TYI.png&quot;);
+              "
+            ></div>
+            <!-- FOTO TEASER KELAS BARISTA 2 (Menggunakan WhatsApp Image Anda) -->
+            <div
+              class="h-64 md:h-[400px] mt-8 bg-cover bg-center rounded-lg"
+              style="
+                background-image: url(&quot;../assets/img/WhatsApp Image 2026-07-10 at 19.00.00 (1).jpeg&quot;);
+              "
+            ></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer [source: 2] -->
+    <footer
+      id="footer-info"
+      class="w-full py-16 bg-surface-container-lowest border-t border-outline-variant/30"
+    >
+      <div
+        class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-gutter px-6 md:px-margin-desktop max-w-container-max mx-auto"
+      >
+        <!-- Kolom 1: Logo, Deskripsi, Sosial Media (Lebar: 5 Kolom) -->
+        <div class="md:col-span-5 flex flex-col gap-6">
+          <!-- Menggunakan logo yang sama dengan header -->
+          <a class="flex items-center" href="index.html">
+            <img
+              src="../assets/img/logottr.png"
+              alt="Logo Tangan Tengen"
+              class="h-14 w-auto object-contain"
+            />
+          </a>
+          <p
+            class="text-on-surface-variant font-body-md opacity-80 max-w-sm leading-relaxed"
+          >
+            Dari gerobak kecil hingga kurasi artisanal terbaik, kami tumbuh jadi
+            teman yang menemani harimu, di mana pun kamu berada.
+          </p>
+          <!-- Sosial Media Menggunakan Font Icon Material Icons bawaan template Anda -->
+          <div class="flex gap-4 items-center mt-2">
+            <a
+              href="https://instagram.com/tangantengen"
+              target="_blank"
+              class="w-10 h-10 rounded-full bg-surface border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all"
+            >
+              <span class="material-symbols-outlined text-xl"
+                >photo_camera</span
+              >
+            </a>
+            <a
+              href="https://wa.me/628123456789"
+              target="_blank"
+              class="w-10 h-10 rounded-full bg-surface border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all"
+            >
+              <span class="material-symbols-outlined text-xl">chat</span>
+            </a>
+            <a
+              href="mailto:hello@tangantengen.com"
+              class="w-10 h-10 rounded-full bg-surface border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-all"
+            >
+              <span class="material-symbols-outlined text-xl">mail</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Kolom 2: Halaman Navigasi (Lebar: 3 Kolom) -->
+        <div class="md:col-span-3 flex flex-col gap-4">
+          <h4
+            class="font-headline-sm text-[20px] text-primary font-bold tracking-wide"
+          >
+            Halaman
+          </h4>
+          <div class="flex flex-col gap-3">
+            <a
+              class="text-on-surface-variant font-body-md hover:text-primary transition-colors"
+              href="index.html"
+              >Home</a
+            >
+            <a
+              class="text-on-surface-variant font-body-md hover:text-primary transition-colors"
+              href="product.html"
+              >Roastery</a
+            >
+            <a
+              class="text-on-surface-variant font-body-md hover:text-primary transition-colors"
+              href="#layanan"
+              >B2B Services</a
+            >
+            <a
+              class="text-on-surface-variant font-body-md hover:text-primary transition-colors"
+              href="#layanan"
+              >Barista Class</a
+            >
+            <a
+              class="text-on-surface-variant font-body-md hover:text-primary transition-colors"
+              href="#footer-info"
+              >Cerita Kami</a
+            >
+          </div>
+        </div>
+
+        <!-- Kolom 3: Hubungi Kami & Sertifikasi Halal (Lebar: 4 Kolom) -->
+        <div class="md:col-span-4 flex flex-col gap-6">
+          <div class="flex flex-col gap-4">
+            <h4
+              class="font-headline-sm text-[20px] text-primary font-bold tracking-wide"
+            >
+              Hubungi Kami
+            </h4>
+            <div class="flex flex-col gap-4">
+              <div class="flex items-start gap-3">
+                <span
+                  class="material-symbols-outlined text-primary mt-1 text-lg"
+                  >location_on</span
+                >
+                <p class="text-on-surface-variant font-body-md opacity-80">
+                  Jl. Roastery No. 42, Artisan District, Jakarta Selatan,
+                  Indonesia
+                </p>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-lg"
+                  >call</span
+                >
+                <p class="text-on-surface-variant font-body-md opacity-80">
+                  +62 812-3456-789
+                </p>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-lg"
+                  >mail</span
+                >
+                <p class="text-on-surface-variant font-body-md opacity-80">
+                  marketing@tangantengen.coffee
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sertifikasi Halal Section (Sesuai Layout Gambar Ide) -->
+          <div
+            class="flex flex-col gap-3 border-t border-outline-variant/20 pt-4"
+          >
+            <h5
+              class="font-label-md text-xs tracking-wider text-on-surface font-bold uppercase"
+            >
+              Sertifikasi Halal
+            </h5>
+            <div class="flex items-center gap-4">
+              <!-- Placeholder Logo Halal (Menggunakan Icon/Grafis sederhana bergaya Emas) -->
+              <div
+                class="w-12 h-12 border border-primary/40 rounded flex flex-col items-center justify-center p-1 text-center bg-surface"
+              >
+                <span class="text-[9px] font-bold text-primary leading-none"
+                  >HALAL</span
+                >
+                <span
+                  class="text-[7px] text-on-surface-variant opacity-60 mt-0.5"
+                  >INDONESIA</span
+                >
+              </div>
+              <div class="flex flex-col">
+                <span
+                  class="text-[10px] text-on-surface-variant opacity-60 uppercase"
+                  >Sertifikat Halal No:</span
+                >
+                <span
+                  class="text-xs font-mono font-bold text-primary tracking-wider"
+                  >ID61110024716600725</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hak Cipta & Slogan Bagian Bawah -->
+      <div
+        class="mt-16 px-6 md:px-margin-desktop max-w-container-max mx-auto flex flex-col sm:flex-row justify-between items-center border-t border-outline-variant/10 pt-8 gap-4"
+      >
+        <!-- Slogan di kiri bawah sesuai contoh gambar -->
+        <p class="font-headline-sm text-lg text-on-surface tracking-wide">
+          Menemani <span class="text-primary italic">Harimu.</span>
+        </p>
+        <p class="text-on-surface-variant font-body-md text-sm opacity-60">
+          &copy; Copyright 2026. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Kustomisasi animasi observer halaman agar tetap smooth
+      const observerOptions = { threshold: 0.1 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("opacity-100", "translate-y-0");
+            entry.target.classList.remove("opacity-0", "translate-y-8");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll("section").forEach((section) => {
+        section.classList.add(
+          "transition-all",
+          "duration-1000",
+          "opacity-0",
+          "translate-y-8",
+        );
+        observer.observe(section);
+      });
+    </script>
+  </body>
+</html>

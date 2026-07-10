@@ -1,0 +1,414 @@
+<!doctype html>
+
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Admin Login | TANGAN TENGEN</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@300;400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+
+      .artisanal-gradient {
+        background: radial-gradient(circle at center, #1f1f1f 0%, #131313 100%);
+      }
+
+      .input-underline:focus-within {
+        border-bottom-color: #e0af4e;
+      }
+
+      .login-card {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-dim": "#131313",
+              "on-secondary-fixed": "#281900",
+              "on-error": "#690005",
+              "surface-container-highest": "#353535",
+              error: "#ffb4ab",
+              background: "#131313",
+              "surface-container-lowest": "#0e0e0e",
+              secondary: "#e9c07e",
+              "outline-variant": "#4f4537",
+              "primary-fixed": "#ffdea6",
+              "on-tertiary-container": "#614200",
+              "tertiary-container": "#e2ae56",
+              "inverse-surface": "#e2e2e2",
+              "surface-container-high": "#2a2a2a",
+              "surface-tint": "#f1bf5c",
+              "tertiary-fixed-dim": "#f3be64",
+              "surface-variant": "#353535",
+              surface: "#131313",
+              "on-error-container": "#ffdad6",
+              "surface-container": "#1f1f1f",
+              "secondary-fixed-dim": "#e9c07e",
+              "secondary-container": "#5e420b",
+              "on-surface": "#e2e2e2",
+              "on-primary": "#412d00",
+              "tertiary-fixed": "#ffdeac",
+              "primary-container": "#e0af4e",
+              "surface-bright": "#393939",
+              "on-background": "#e2e2e2",
+              "on-tertiary-fixed-variant": "#604100",
+              "error-container": "#93000a",
+              "on-secondary": "#432c00",
+              "on-primary-fixed-variant": "#5d4200",
+              "inverse-on-surface": "#303030",
+              "inverse-primary": "#7b5800",
+              "primary-fixed-dim": "#f1bf5c",
+              "surface-container-low": "#1b1b1b",
+              "on-surface-variant": "#d2c5b1",
+              "on-secondary-fixed-variant": "#5e420b",
+              primary: "#feca66",
+              "on-tertiary": "#432c00",
+              "secondary-fixed": "#ffdeac",
+              "on-secondary-container": "#d7af6f",
+              "on-primary-fixed": "#271900",
+              tertiary: "#ffca72",
+              "on-primary-container": "#5f4300",
+              outline: "#9b8f7d",
+              "on-tertiary-fixed": "#281900",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "container-max": "1280px",
+              unit: "8px",
+              "margin-desktop": "64px",
+              gutter: "24px",
+              "margin-mobile": "20px",
+            },
+            fontFamily: {
+              "headline-sm": ["EB Garamond"],
+              "body-md": ["Hanken Grotesk"],
+              "headline-lg": ["EB Garamond"],
+              "display-lg": ["EB Garamond"],
+              "headline-md": ["EB Garamond"],
+              "body-lg": ["Hanken Grotesk"],
+              "label-md": ["Hanken Grotesk"],
+            },
+            fontSize: {
+              "headline-sm": ["24px", { lineHeight: "1.3", fontWeight: "500" }],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-lg": ["48px", { lineHeight: "1.2", fontWeight: "500" }],
+              "display-lg": [
+                "64px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "headline-md": ["32px", { lineHeight: "1.2", fontWeight: "500" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "1.4",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body-md overflow-hidden h-screen flex flex-col"
+  >
+    <!-- Lapisan Latar Belakang Atmosferik -->
+    <div class="fixed inset-0 z-0 artisanal-gradient opacity-60"></div>
+    <div
+      class="fixed inset-0 z-0 pointer-events-none opacity-20"
+      style="
+        background-image: url(&quot;https://www.transparenttextures.com/patterns/dark-leather.png&quot;);
+      "
+    ></div>
+    <main
+      class="relative z-10 flex-grow flex items-center justify-center px-margin-mobile md:px-0"
+    >
+      <!-- Wadah Kartu Log Masuk -->
+      <div class="w-full max-w-[440px] login-card">
+        <div
+          class="bg-surface-container p-10 md:p-12 shadow-2xl rounded-lg border border-outline-variant/30 backdrop-blur-sm"
+        >
+          <!-- Tajuk Jenama -->
+          <div class="text-center mb-12">
+            <h1
+              class="font-headline-md text-headline-md text-primary tracking-tighter mb-2"
+            >
+              TANGAN TENGEN
+            </h1>
+            <p
+              class="font-label-md text-label-md text-on-surface-variant uppercase tracking-[0.2em]"
+            >
+              Portal Login Admin
+            </p>
+          </div>
+
+          <!-- Pemberitahuan Ralat Pengesahan -->
+          <div
+            id="alertError"
+            class="hidden mb-6 p-4 bg-error/10 border border-error/30 text-error text-xs uppercase tracking-wider rounded-sm flex items-center gap-3"
+          >
+            <span class="material-symbols-outlined text-sm">warning</span>
+            <span id="errorMessage">Akses Ditolak!</span>
+          </div>
+
+          <!-- Bahagian Borang -->
+          <form class="space-y-10" id="loginForm">
+            <!-- Nama Pengguna / Emel -->
+            <div class="relative group">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant mb-1 group-focus-within:text-primary transition-colors"
+                for="identity"
+              >
+                Nama Pengguna atau Emel
+              </label>
+              <div
+                class="flex items-center border-b border-outline-variant/50 py-2 input-underline transition-all"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant mr-3 text-[20px]"
+                  >person</span
+                >
+                <input
+                  class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline-variant/50 font-body-md"
+                  id="identity"
+                  name="identity"
+                  placeholder="username"
+                  required=""
+                  type="text"
+                />
+              </div>
+            </div>
+            <!-- Kata Laluan -->
+            <div class="relative group">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant mb-1 group-focus-within:text-primary transition-colors"
+                for="password"
+              >
+                Kata Laluan
+              </label>
+              <div
+                class="flex items-center border-b border-outline-variant/50 py-2 input-underline transition-all"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant mr-3 text-[20px]"
+                  >lock</span
+                >
+                <input
+                  class="bg-transparent border-none focus:ring-0 w-full text-on-surface placeholder:text-outline-variant/50 font-body-md"
+                  id="password"
+                  name="password"
+                  placeholder="••••••••"
+                  required=""
+                  type="password"
+                />
+                <button
+                  class="text-on-surface-variant hover:text-primary transition-colors"
+                  id="togglePassword"
+                  type="button"
+                >
+                  <span
+                    class="material-symbols-outlined text-[20px]"
+                    id="eyeIcon"
+                    >visibility</span
+                  >
+                </button>
+              </div>
+            </div>
+            <!-- Pilihan Tambahan -->
+            <div class="flex items-center justify-between">
+              <label class="flex items-center cursor-pointer group">
+                <input class="hidden peer" type="checkbox" />
+                <div
+                  class="w-5 h-5 border-2 border-outline-variant rounded-sm flex items-center justify-center peer-checked:bg-primary peer-checked:border-primary transition-all"
+                >
+                  <span
+                    class="material-symbols-outlined text-background text-[16px] hidden peer-checked:block"
+                    style="font-variation-settings: &quot;wght&quot; 700"
+                    >check</span
+                  >
+                </div>
+                <span
+                  class="ml-3 font-label-md text-label-md text-on-surface-variant group-hover:text-on-surface transition-colors"
+                  >Ingat Saya</span
+                >
+              </label>
+              <a
+                class="font-label-md text-label-md text-primary hover:opacity-80 transition-opacity"
+                href="#"
+                >Lupa?</a
+              >
+            </div>
+            <!-- Butang Tindakan -->
+            <button
+              class="w-full py-4 bg-primary text-on-primary font-label-md text-label-md uppercase font-bold tracking-[0.1em] rounded-sm active:scale-95 transition-all duration-200 hover:brightness-110 shadow-lg shadow-primary/10"
+              type="submit"
+            >
+              Login
+            </button>
+          </form>
+          <!-- Sokongan Sistem -->
+          <div
+            class="mt-12 pt-8 border-t border-outline-variant/20 text-center"
+          >
+            <p class="font-label-md text-label-md text-on-surface-variant/60">
+              Kawasan Akses Terhad. <br />
+              Hubungi
+              <span class="text-secondary font-semibold">Pentadbir Sistem</span>
+              untuk bantuan lanjut.
+            </p>
+          </div>
+        </div>
+        <!-- Pengaki Metadata -->
+        <div class="mt-8 flex justify-between items-center px-4">
+          <span
+            class="font-label-md text-[10px] text-on-surface-variant/40 tracking-widest uppercase"
+          >
+            © 2024 Tangan Tengen Roastery
+          </span>
+          <div class="flex gap-4">
+            <span
+              class="material-symbols-outlined text-on-surface-variant/40 text-[18px]"
+              >verified_user</span
+            >
+            <span
+              class="material-symbols-outlined text-on-surface-variant/40 text-[18px]"
+              >encrypted</span
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Skrip Interaktif Fungsi Log Masuk -->
+    <script>
+      // Sembunyikan atau tunjukkan kata laluan
+      const togglePassword = document.getElementById("togglePassword");
+      const passwordInput = document.getElementById("password");
+      const eyeIcon = document.getElementById("eyeIcon");
+
+      togglePassword.addEventListener("click", () => {
+        const type =
+          passwordInput.getAttribute("type") === "password"
+            ? "text"
+            : "password";
+        passwordInput.setAttribute("type", type);
+        eyeIcon.textContent =
+          type === "password" ? "visibility" : "visibility_off";
+      });
+
+      // Sistem Navigasi Selamat dalam persekitaran Sandbox Iframe
+      function safeRedirect(page) {
+        try {
+          if (window.location.origin && window.location.origin !== "null") {
+            const currentPath = window.location.pathname;
+            const directory = currentPath.substring(
+              0,
+              currentPath.lastIndexOf("/"),
+            );
+            const targetUrl = `${window.location.origin}${directory}/${page}`;
+            window.location.href = targetUrl;
+          } else {
+            window.location.href = page;
+          }
+        } catch (e) {
+          console.warn("Gagal melakukan navigasi standar:", e);
+          try {
+            window.location.assign(page);
+          } catch (err) {
+            console.error("Metode navigasi fallback juga diblokir:", err);
+          }
+        }
+      }
+
+      // Integrasi pengiriman data login dengan Backend Node.js
+      const form = document.getElementById("loginForm");
+      const alertError = document.getElementById("alertError");
+      const errorMessage = document.getElementById("errorMessage");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        alertError.classList.add("hidden"); // Sembunyikan kotak ralat terdahulu
+
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.innerHTML;
+
+        // Paparkan animasi memuat semasa pengesahan dijalankan
+        btn.innerHTML =
+          '<span class="flex items-center justify-center gap-2">Mengesahkan... <span class="animate-spin material-symbols-outlined text-[16px]">progress_activity</span></span>';
+        btn.classList.add("opacity-80", "cursor-not-allowed");
+
+        const usernameInput = document.getElementById("identity").value;
+        const passwordValue = passwordInput.value;
+
+        try {
+          const response = await fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              username: usernameInput, // Menggunakan data dinamis sesuai dengan yang diketik admin
+              password: passwordValue, // Menggunakan kata laluan dinamis sesuai dengan yang diketik admin
+            }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            // Pengesahan berjaya: Simpan token keselamatan ke storan pelayar lokal
+            localStorage.setItem("adminToken", result.token);
+            // Alihkan halaman ke papan pemuka utama admin dengan selamat
+            safeRedirect("dashboard.html");
+          } else {
+            // Paparkan mesej ralat yang dihantar dari backend
+            errorMessage.innerText = result.message;
+            alertError.classList.remove("hidden");
+
+            // Kembalikan butang ke keadaan asal
+            btn.innerHTML = originalText;
+            btn.classList.remove("opacity-80", "cursor-not-allowed");
+          }
+        } catch (error) {
+          console.error("Sambungan gagal:", error);
+          errorMessage.innerText =
+            "Sambungan ke pelayan gagal. Sila pastikan sistem backend telah dijalankan.";
+          alertError.classList.remove("hidden");
+
+          btn.innerHTML = originalText;
+          btn.classList.remove("opacity-80", "cursor-not-allowed");
+        }
+      });
+    </script>
+  </body>
+</html>

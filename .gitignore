@@ -1,0 +1,18 @@
+# 1. Dependency Node.js (Wajib diabaikan karena ukurannya sangat besar)
+backend/node_modules/
+
+# 2. File Konfigurasi Rahasia (Wajib diabaikan agar password/API key database tidak bocor ke GitHub)
+backend/.env
+
+# 3. Hasil Upload User (Opsional tapi direkomendasikan, agar file gambar testing/lokal tidak mengotori repositori)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# 4. File Sampah Otomatis Sistem Operasi
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 5. Folder Pengaturan Code Editor (Jika ada)
+.vscode/
+.idea/

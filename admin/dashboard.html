@@ -1,0 +1,709 @@
+<!doctype html>
+
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>TANGAN TENGEN - Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              error: "#ffb4ab",
+              "surface-container": "#1f1f1f",
+              "surface-container-lowest": "#0e0e0e",
+              "on-error": "#690005",
+              surface: "#131313",
+              "surface-dim": "#131313",
+              "on-secondary-fixed-variant": "#5e420b",
+              "on-primary-fixed-variant": "#5d4200",
+              "primary-fixed-dim": "#f1bf5c",
+              "inverse-on-surface": "#303030",
+              "on-error-container": "#ffdad6",
+              "on-background": "#e2e2e2",
+              "tertiary-container": "#e2ae56",
+              "outline-variant": "#4f4537",
+              "on-tertiary": "#432c00",
+              "secondary-container": "#5e420b",
+              "primary-fixed": "#ffdea6",
+              "surface-container-highest": "#353535",
+              primary: "#feca66",
+              "inverse-primary": "#7b5800",
+              "on-primary": "#412d00",
+              secondary: "#e9c07e",
+              "surface-bright": "#393939",
+              "surface-container-low": "#1b1b1b",
+              "secondary-fixed": "#ffdeac",
+              "on-secondary-container": "#d7af6f",
+              "on-tertiary-fixed-variant": "#604100",
+              "surface-container-high": "#2a2a2a",
+              "error-container": "#93000a",
+              "on-secondary-fixed": "#281900",
+              "primary-container": "#e0af4e",
+              background: "#131313",
+              "tertiary-fixed": "#ffdeac",
+              "on-primary-container": "#5f4300",
+              "inverse-surface": "#e2e2e2",
+              outline: "#9b8f7d",
+              "on-surface-variant": "#d2c5b1",
+              "on-primary-fixed": "#271900",
+              "tertiary-fixed-dim": "#f3be64",
+              tertiary: "#ffca72",
+              "surface-variant": "#353535",
+              "surface-tint": "#f1bf5c",
+              "on-tertiary-container": "#614200",
+              "on-secondary": "#432c00",
+              "on-surface": "#e2e2e2",
+              "secondary-fixed-dim": "#e9c07e",
+              "on-tertiary-fixed": "#281900",
+            },
+            borderRadius: {
+              DEFAULT: "0.125rem",
+              lg: "0.25rem",
+              xl: "0.5rem",
+              full: "0.75rem",
+            },
+            spacing: {
+              "margin-desktop": "64px",
+              unit: "8px",
+              "container-max": "1280px",
+              gutter: "24px",
+              "margin-mobile": "20px",
+            },
+            fontFamily: {
+              "headline-md": ["EB Garamond"],
+              "label-md": ["Hanken Grotesk"],
+              "headline-lg-mobile": ["EB Garamond"],
+              "headline-sm": ["EB Garamond"],
+              "headline-lg": ["EB Garamond"],
+              "display-lg": ["EB Garamond"],
+              "body-md": ["Hanken Grotesk"],
+              "body-lg": ["Hanken Grotesk"],
+            },
+            fontSize: {
+              "headline-md": ["32px", { lineHeight: "1.2", fontWeight: "500" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "1.4",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg-mobile": [
+                "36px",
+                { lineHeight: "1.2", fontWeight: "500" },
+              ],
+              "headline-sm": ["24px", { lineHeight: "1.3", fontWeight: "500" }],
+              "headline-lg": ["48px", { lineHeight: "1.2", fontWeight: "500" }],
+              "display-lg": [
+                "64px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #131313;
+        color: #e2e2e2;
+        -webkit-font-smoothing: antialiased;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .sidebar-active {
+        background-color: #e0af4e !important;
+        color: #5f4300 !important;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #1f1f1f;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #4f4537;
+      }
+      .glass-panel {
+        background: rgba(31, 31, 31, 0.7);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(79, 69, 55, 0.3);
+      }
+    </style>
+  </head>
+  // BYPASS LOGIN
+  <script>
+    (async function proteksiDashboard() {
+      const token = localStorage.getItem("adminToken");
+
+      // 1. Jika token sama sekali tidak ditemukan di browser
+      if (!token) {
+        alert("Akses ditolak! Anda harus login terlebih dahulu.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      try {
+        // 2. Verifikasi token ke backend server.js yang sudah kita buat tadi
+        const response = await fetch("http://localhost:5000/api/auth/verify", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        // 3. Jika server merespon token tidak sah / kadaluarsa
+        if (!response.ok) {
+          localStorage.removeItem("adminToken"); // Hapus token palsu/rusak
+          alert("Sesi Anda telah berakhir. Silakan login kembali.");
+          window.location.href = "login.html";
+        }
+      } catch (error) {
+        console.error("Gagal terhubung ke server pengaman:", error);
+        // Opsional: batalkan akses jika server backend mati demi keamanan
+        alert("Gagal memverifikasi keamanan. Pastikan server backend menyala.");
+        window.location.href = "login.html";
+      }
+    })();
+  </script>
+
+  <body class="font-body-md text-body-md overflow-hidden">
+    <!-- Sidebar Wrapper -->
+    <aside
+      class="h-screen w-64 fixed left-0 top-0 bg-surface-container border-r border-outline-variant shadow-sm flex flex-col py-6 z-40"
+    >
+      <!-- Brand / Header -->
+      <div class="px-6 mb-10">
+        <h1
+          class="font-headline-sm text-headline-sm text-primary tracking-tighter"
+        >
+          TANGAN TENGEN
+        </h1>
+        <div class="mt-4 flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden border border-outline-variant"
+          >
+            <img
+              class="w-full h-full object-cover"
+              data-alt="A professional studio portrait of a coffee roastery administrator in a minimalist setting. The lighting is warm and dramatic, highlighting artisanal details. The person is wearing a deep brown linen apron, reflecting a premium, high-end heritage brand aesthetic. The background is a blurred specialty coffee laboratory with golden accents."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqjgsKgHLQB9odd29O4FIoNbOuEFlcfxtLmhB64XjopKUPZV7Drw0ajhYktJpGyFtYiLcxZSqIGR_B94mwFaPMybZ_bXgDn2jayRjv7qR-_1hOq09bVGJfLdwLoZ-TeIVjFIT_ggjsdJ3LoVw2pa65dFhGI3X3Pevm5hshbWRvX2Ud17MG80wUJj7Qv2Yz3Gy1KemktF_20-cxuaMb29LFgLwcGts0E4VfCa3cXYFfk-34j3lnQi_xF7Y3cxHlaxr9w22PjTKxpqsv"
+            />
+          </div>
+          <div>
+            <p class="font-label-md text-label-md text-on-surface">
+              Admin Panel
+            </p>
+            <p
+              class="text-[10px] uppercase tracking-widest text-on-surface-variant"
+            >
+              Roastery Management
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Main Nav -->
+      <nav class="flex-1 space-y-1 px-2 overflow-y-auto custom-scrollbar">
+        <a
+          class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg transition-transform active:scale-98"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >inventory_2</span
+          >
+          <span class="font-label-md text-label-md">Products</span>
+        </a>
+      </nav>
+      <!-- CTA & Bottom Nav -->
+      <div class="px-4 mt-auto pt-6 border-t border-outline-variant/30">
+        <button
+          class="w-full py-3 mb-6 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest rounded-sm hover:opacity-90 transition-all active:scale-95"
+          onclick="toggleModal(true)"
+        >
+          Tambah Produk
+        </button>
+        <div class="space-y-1">
+          <a
+            class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-[20px]">settings</span>
+            <span class="font-label-md text-label-md">Settings</span>
+          </a>
+          <a
+            class="flex items-center gap-3 px-4 py-2 text-error hover:bg-error-container/20 rounded-lg transition-colors"
+            href="#"
+          >
+            <span class="material-symbols-outlined text-[20px]">logout</span>
+            <span class="font-label-md text-label-md">Logout</span>
+          </a>
+        </div>
+      </div>
+    </aside>
+    <!-- Main Content Area -->
+    <main
+      class="ml-64 min-h-screen bg-surface p-10 overflow-y-auto h-screen custom-scrollbar"
+    >
+      <!-- Header Section -->
+      <header class="flex justify-between items-end mb-12">
+        <div>
+          <h2 class="font-headline-lg text-headline-lg text-on-background">
+            Inventori Produk
+          </h2>
+          <p
+            class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-2"
+          >
+            Manage your artisanal coffee beans, equipment, and roast batches
+            from one central laboratory dashboard.
+          </p>
+        </div>
+        <div class="flex gap-4">
+          <div class="relative">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]"
+              >search</span
+            >
+            <input
+              class="bg-surface-container border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 pl-10 pr-4 w-64 transition-colors font-body-md"
+              placeholder="Search products..."
+              type="text"
+            />
+          </div>
+          <button
+            class="flex items-center gap-2 border border-outline-variant px-6 py-2 font-label-md text-label-md text-primary uppercase tracking-widest hover:bg-surface-variant/20 transition-all"
+          >
+            <span class="material-symbols-outlined">filter_list</span> Filter
+          </button>
+        </div>
+      </header>
+      <!-- Product Table Canvas -->
+      <div class="glass-panel rounded-lg overflow-hidden">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-outline-variant/50">
+              <th
+                class="px-6 py-5 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
+              >
+                Product Details
+              </th>
+              <th
+                class="px-6 py-5 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
+              >
+                SKU / Origin
+              </th>
+              <th
+                class="px-6 py-5 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
+              >
+                Roast Level
+              </th>
+              <th
+                class="px-6 py-5 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
+              >
+                Stock
+              </th>
+              <th
+                class="px-6 py-5 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
+              >
+                Price
+              </th>
+              <th
+                class="px-6 py-5 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest text-right"
+              >
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody
+            class="divide-y divide-outline-variant/20"
+            id="daftar-produk-admin"
+          >
+            <!-- Baris produk dari database akan dirender di sini -->
+          </tbody>
+        </table>
+        <!-- Pagination Footer -->
+        <div
+          class="px-6 py-5 flex items-center justify-between border-t border-outline-variant/50 bg-surface-container/50"
+        >
+          <p class="text-xs text-on-surface-variant uppercase tracking-widest">
+            Showing 3 of 128 products
+          </p>
+          <div class="flex gap-2">
+            <button
+              class="px-4 py-2 border border-outline-variant/30 text-outline hover:text-primary hover:border-primary transition-all text-xs uppercase tracking-widest font-label-md"
+            >
+              Previous
+            </button>
+            <button
+              class="px-4 py-2 bg-primary/10 border border-primary text-primary text-xs uppercase tracking-widest font-label-md"
+            >
+              1
+            </button>
+            <button
+              class="px-4 py-2 border border-outline-variant/30 text-on-surface-variant hover:text-primary hover:border-primary transition-all text-xs uppercase tracking-widest font-label-md"
+            >
+              2
+            </button>
+            <button
+              class="px-4 py-2 border border-outline-variant/30 text-on-surface-variant hover:text-primary hover:border-primary transition-all text-xs uppercase tracking-widest font-label-md"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Modal Form: Tambah Produk -->
+    <div
+      class="fixed inset-0 z-50 flex items-center justify-center hidden"
+      id="productModal"
+    >
+      <!-- Backdrop -->
+      <div
+        class="absolute inset-0 bg-black/80 backdrop-blur-sm"
+        onclick="toggleModal(false)"
+      ></div>
+      <!-- Form Container -->
+      <div
+        class="relative w-full max-w-2xl bg-surface-container border border-outline-variant shadow-2xl overflow-hidden scale-95 transition-transform duration-300"
+        id="modalContainer"
+      >
+        <div class="px-10 py-8">
+          <div class="flex justify-between items-start mb-10">
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary">
+                Daftar Produk Baru
+              </h3>
+              <p
+                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-1"
+              >
+                Laboratory Input
+              </p>
+            </div>
+            <button
+              class="text-outline hover:text-on-surface transition-colors"
+              onclick="toggleModal(false)"
+            >
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+          <form
+            class="space-y-8"
+            id="form-tambah-produk"
+            enctype="multipart/form-data"
+          >
+            <div class="grid grid-cols-2 gap-8">
+              <!-- Product Name -->
+              <div class="col-span-2">
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
+                  >Nama Produk</label
+                >
+                <input
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-lg text-body-lg placeholder:text-outline-variant"
+                  placeholder="e.g. Arabica Gayo High Mountain"
+                  type="text"
+                  name="nama"
+                  required
+                />
+              </div>
+              <!-- Category -->
+              <div>
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
+                  >Kategori</label
+                >
+                <select
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md"
+                  name="kategori"
+                  required
+                >
+                  <option value="Arabika" class="bg-surface">Arabika</option>
+                  <option value="Robusta" class="bg-surface">Robusta</option>
+                  <option value="Teh" class="bg-surface">Teh</option>
+                  <option value="Other" class="bg-surface">
+                    Other (Lain-lain)
+                  </option>
+                </select>
+              </div>
+              <!-- Price -->
+              <div>
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
+                  >Harga (IDR)</label
+                >
+                <input
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md"
+                  placeholder="0"
+                  type="number"
+                  name="harga"
+                  required
+                />
+              </div>
+              <!-- SKU -->
+              <div>
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
+                  >SKU</label
+                >
+                <input
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md"
+                  placeholder="TT-PRD-XXX"
+                  type="text"
+                  name="sku"
+                  required
+                />
+              </div>
+              <!-- Stock -->
+              <div>
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
+                  >Stok Awal</label
+                >
+                <input
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md"
+                  placeholder="0"
+                  type="number"
+                  name="stok"
+                  required
+                />
+              </div>
+            </div>
+            <!-- Description -->
+            <div>
+              <label
+                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
+                >Deskripsi &amp; Catatan Rasa</label
+              >
+              <textarea
+                class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md placeholder:text-outline-variant"
+                placeholder="Describe the profile, notes, and origins..."
+                rows="3"
+                name="deskripsi"
+              ></textarea>
+            </div>
+            <!-- Image Upload -->
+            <div
+              class="border-2 border-dashed border-outline-variant/30 py-8 flex flex-col items-center justify-center rounded-sm hover:border-primary transition-colors cursor-pointer group"
+              onclick="document.getElementById('input-gambar').click()"
+            >
+              <span
+                class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[40px]"
+                >add_photo_alternate</span
+              >
+              <p
+                class="text-xs uppercase tracking-widest text-outline group-hover:text-primary transition-colors mt-2"
+                id="label-gambar"
+              >
+                Upload Product Image
+              </p>
+              <input
+                type="file"
+                id="input-gambar"
+                name="gambar"
+                accept="image/*"
+                class="hidden"
+                required
+                onchange="tampilkanNamaFile(this)"
+              />
+            </div>
+            <div class="flex justify-end gap-6 pt-4">
+              <button
+                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest hover:text-on-surface transition-colors"
+                onclick="toggleModal(false)"
+                type="button"
+              >
+                Batal
+              </button>
+              <button
+                class="px-12 py-3 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all"
+                type="submit"
+              >
+                Simpan Produk
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      // URL Server Backend Node.js
+      const API_URL = "http://localhost:5000/api/products";
+
+      // --- INTERAKSI UI MODAL ---
+      function toggleModal(show) {
+        const modal = document.getElementById("productModal");
+        const container = document.getElementById("modalContainer");
+
+        if (show) {
+          modal.classList.remove("hidden");
+          setTimeout(() => {
+            container.classList.remove("scale-95", "opacity-0");
+            container.classList.add("scale-100", "opacity-100");
+          }, 10);
+        } else {
+          container.classList.add("scale-95", "opacity-0");
+          container.classList.remove("scale-100", "opacity-100");
+          setTimeout(() => {
+            modal.classList.add("hidden");
+          }, 300);
+        }
+      }
+
+      function tampilkanNamaFile(input) {
+        const label = document.getElementById("label-gambar");
+        if (input.files && input.files[0]) {
+          label.innerText = `Terpilih: ${input.files[0].name}`;
+          label.classList.add("text-primary");
+        }
+      }
+
+      // --- LOGIKA BACKEND INTEGRATION (FETCH) ---
+      async function muatProdukAdmin() {
+        try {
+          const respon = await fetch(API_URL);
+          const data = await respon.json();
+          const tbody = document.getElementById("daftar-produk-admin");
+
+          if (data.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="6" class="px-6 py-10 text-center text-outline-variant uppercase tracking-widest text-xs">Belum ada produk di laboratorium database.</td></tr>`;
+            return;
+          }
+
+          tbody.innerHTML = data
+            .map(
+              (produk) => `
+        <tr class="hover:bg-surface-container-highest/30 transition-colors group">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-surface-container border border-outline-variant rounded overflow-hidden">
+                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="http://localhost:5000/uploads/${produk.gambar}" alt="${produk.nama}" />
+              </div>
+              <div>
+                <h4 class="font-headline-sm text-headline-sm text-on-surface leading-tight">${produk.nama}</h4>
+                <p class="font-label-md text-label-md text-secondary/70">${produk.kategori}</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span class="font-body-md text-body-md text-on-surface-variant">LAB-PRD-${produk._id.slice(-4).toUpperCase()}</span><br />
+            <span class="text-xs text-outline uppercase tracking-wider">Tangan Tengen Storage</span>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border border-secondary-container text-secondary bg-secondary-container/10">Artisanal Batch</span>
+          </td>
+          <td class="px-6 py-4">
+            <span class="text-xs text-on-surface-variant">Available</span>
+          </td>
+          <td class="px-6 py-4 font-label-md text-label-md text-primary">
+            Katalog Menu
+          </td>
+          <td class="px-6 py-4 text-right">
+            <div class="flex justify-end gap-2">
+              <button onclick="hapusProduk('${produk._id}')" class="w-10 h-10 flex items-center justify-center rounded hover:bg-error/20 hover:text-error transition-colors text-on-surface-variant" title="Hapus Produk">
+                <span class="material-symbols-outlined text-[20px]">delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `,
+            )
+            .join("");
+        } catch (error) {
+          console.error("Gagal memuat produk:", error);
+        }
+      }
+
+      const formTambah = document.getElementById("form-tambah-produk");
+      formTambah.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const dataForm = new FormData(formTambah);
+
+        try {
+          const respon = await fetch(API_URL, {
+            method: "POST",
+            body: dataForm,
+          });
+
+          if (respon.ok) {
+            alert(
+              "Produk baru berhasil didaftarkan ke Laboratorium Tangan Tengen!",
+            );
+            formTambah.reset();
+            document.getElementById("label-gambar").innerText =
+              "Upload Product Image";
+            toggleModal(false);
+            muatProdukAdmin();
+          } else {
+            const err = await respon.json();
+            alert("Gagal menyimpan: " + err.message);
+          }
+        } catch (error) {
+          console.error("Error kirim data:", error);
+          alert("Koneksi gagal, pastikan server backend menyala!");
+        }
+      });
+
+      async function hapusProduk(id) {
+        if (
+          confirm(
+            "Apakah Anda yakin ingin melenyapkan produk ini dari katalog?",
+          )
+        ) {
+          try {
+            const respon = await fetch(`${API_URL}/${id}`, {
+              method: "DELETE",
+            });
+            if (respon.ok) {
+              alert("Produk berhasil dihapus!");
+              muatProdukAdmin();
+            } else {
+              alert("Gagal menghapus produk.");
+            }
+          } catch (error) {
+            console.error("Error hapus:", error);
+          }
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", muatProdukAdmin);
+
+      const searchInput = document.querySelector('input[type="text"]');
+      searchInput.addEventListener("focus", () => {
+        searchInput.parentElement.classList.add("border-primary");
+      });
+      searchInput.addEventListener("blur", () => {
+        searchInput.parentElement.classList.remove("border-primary");
+      });
+    </script>
+  </body>
+</html>
