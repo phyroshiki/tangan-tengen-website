@@ -1,6 +1,14 @@
 {
+  "version": 2,
+  "builds": [
+    { "src": "user/**/*.html", "use": "@vercel/static" },
+    { "src": "admin/**/*.html", "use": "@vercel/static" },
+    { "src": "assets/**/*", "use": "@vercel/static" },
+    { "src": "backend/server.js", "use": "@vercel/node" }
+  ],
   "rewrites": [
-    { "source": "/assets/(.*)", "destination": "/assets/$1" },
-    { "source": "/(.*)", "destination": "/home/$1" }
+    { "source": "/api/(.*)", "destination": "/backend/server.js" },
+    { "source": "/admin/(.*)", "destination": "/admin/$1" },
+    { "source": "/(.*)", "destination": "/user/$1" }
   ]
 }
