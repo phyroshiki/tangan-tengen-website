@@ -725,7 +725,7 @@
         const gridContainer = document.getElementById("product-db-grid");
 
         try {
-          const response = await fetch("http://localhost:5000/api/products");
+          const response = await fetch("/api/products");
           const products = await response.json();
 
           if (!products || products.length === 0) {
@@ -751,7 +751,7 @@
                 <div class="aspect-[3/4] mb-6 overflow-hidden bg-surface-container-high relative">
                   <img
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    src="http://localhost:5000/uploads/${item.gambar}"
+                    src="/api/uploads/${item.gambar}"
                     alt="${item.nama}"
                   />
                   <div class="absolute top-4 right-4">
