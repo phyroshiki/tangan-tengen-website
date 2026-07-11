@@ -66,18 +66,20 @@ mongoose
 const ProductSchema = new mongoose.Schema(
   {
     nama: { type: String, required: true },
-    gambar: { type: String, required: true }, // Nanti bisa berisi nama file lokal atau URL penuh Vercel Blob
+    gambar: { type: String, required: true },
     deskripsi: String,
     kategori: {
       type: String,
       enum: ["Arabika", "Robusta", "Teh", "Other"],
       default: "Arabika",
     },
+    // DIUBAH: Menjadi opsional (tanpa required: true)
+    harga: { type: Number, default: 0 },
+    sku: { type: String, default: "" },
+    stok: { type: Number, default: 0 },
   },
   { timestamps: true },
 );
-
-const Product = mongoose.model("Product", ProductSchema);
 
 // ==========================================
 // 4. KONFIGURASI UPLOAD GAMBAR (Multer Dinamis)
@@ -172,9 +174,13 @@ app.post(
 
       const newProduct = new Product({
         nama: req.body.nama,
-        gambar: gambarResult, // Bisa berupa nama file lokal atau URL penuh Vercel Blob
+        gambar: gambarResult,
         deskripsi: req.body.deskripsi,
         kategori: req.body.kategori,
+        // Menggunakan '|| 0' atau '|| ""' agar jika form dikosongkan, server tidak error/crash
+        harga: req.body.harga ? Number(req.body.harga) : 0,
+        sku: req.body.sku || "",
+        stok: req.body.stok ? Number(req.body.stok) : 0,
       });
 
       const savedProduct = await newProduct.save();
