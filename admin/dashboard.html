@@ -14,10 +14,6 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -159,12 +155,12 @@
       }
     </style>
   </head>
-  // BYPASS LOGIN
+
+  <!-- PROTEKSI LOGIN -->
   <script>
     (async function proteksiDashboard() {
       const token = localStorage.getItem("adminToken");
 
-      // 1. Jika token sama sekali tidak ditemukan di browser
       if (!token) {
         alert("Akses ditolak! Anda harus login terlebih dahulu.");
         window.location.href = "login.html";
@@ -172,24 +168,24 @@
       }
 
       try {
-        // 2. Verifikasi token ke backend server.js yang sudah kita buat tadi
-        const response = await fetch("http://localhost:5000/api/auth/verify", {
+        // PERBAIKAN: Menggunakan rute relatif Vercel
+        const response = await fetch("/api/auth/verify", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        // 3. Jika server merespon token tidak sah / kadaluarsa
         if (!response.ok) {
-          localStorage.removeItem("adminToken"); // Hapus token palsu/rusak
+          localStorage.removeItem("adminToken");
           alert("Sesi Anda telah berakhir. Silakan login kembali.");
           window.location.href = "login.html";
         }
       } catch (error) {
         console.error("Gagal terhubung ke server pengaman:", error);
-        // Opsional: batalkan akses jika server backend mati demi keamanan
-        alert("Gagal memverifikasi keamanan. Pastikan server backend menyala.");
+        alert(
+          "Gagal memverifikasi keamanan. Pastikan konfigurasi jaringan benar.",
+        );
         window.location.href = "login.html";
       }
     })();
@@ -213,7 +209,7 @@
           >
             <img
               class="w-full h-full object-cover"
-              data-alt="A professional studio portrait of a coffee roastery administrator in a minimalist setting. The lighting is warm and dramatic, highlighting artisanal details. The person is wearing a deep brown linen apron, reflecting a premium, high-end heritage brand aesthetic. The background is a blurred specialty coffee laboratory with golden accents."
+              alt="Admin avatar"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqjgsKgHLQB9odd29O4FIoNbOuEFlcfxtLmhB64XjopKUPZV7Drw0ajhYktJpGyFtYiLcxZSqIGR_B94mwFaPMybZ_bXgDn2jayRjv7qR-_1hOq09bVGJfLdwLoZ-TeIVjFIT_ggjsdJ3LoVw2pa65dFhGI3X3Pevm5hshbWRvX2Ud17MG80wUJj7Qv2Yz3Gy1KemktF_20-cxuaMb29LFgLwcGts0E4VfCa3cXYFfk-34j3lnQi_xF7Y3cxHlaxr9w22PjTKxpqsv"
             />
           </div>
@@ -259,16 +255,17 @@
             <span class="material-symbols-outlined text-[20px]">settings</span>
             <span class="font-label-md text-label-md">Settings</span>
           </a>
-          <a
-            class="flex items-center gap-3 px-4 py-2 text-error hover:bg-error-container/20 rounded-lg transition-colors"
-            href="#"
+          <button
+            id="btn-logout"
+            class="w-full flex items-center gap-3 px-4 py-2 text-error hover:bg-error-container/20 rounded-lg transition-colors text-left"
           >
             <span class="material-symbols-outlined text-[20px]">logout</span>
             <span class="font-label-md text-label-md">Logout</span>
-          </a>
+          </button>
         </div>
       </div>
     </aside>
+
     <!-- Main Content Area -->
     <main
       class="ml-64 min-h-screen bg-surface p-10 overflow-y-auto h-screen custom-scrollbar"
@@ -298,13 +295,9 @@
               type="text"
             />
           </div>
-          <button
-            class="flex items-center gap-2 border border-outline-variant px-6 py-2 font-label-md text-label-md text-primary uppercase tracking-widest hover:bg-surface-variant/20 transition-all"
-          >
-            <span class="material-symbols-outlined">filter_list</span> Filter
-          </button>
         </div>
       </header>
+
       <!-- Product Table Canvas -->
       <div class="glass-panel rounded-lg overflow-hidden">
         <table class="w-full text-left border-collapse">
@@ -318,12 +311,12 @@
               <th
                 class="px-6 py-5 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
               >
-                SKU / Origin
+                SKU
               </th>
               <th
                 class="px-6 py-5 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
               >
-                Roast Level
+                Category
               </th>
               <th
                 class="px-6 py-5 font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
@@ -346,52 +339,28 @@
             class="divide-y divide-outline-variant/20"
             id="daftar-produk-admin"
           >
-            <!-- Baris produk dari database akan dirender di sini -->
+            <tr>
+              <td
+                colspan="6"
+                class="px-6 py-10 text-center text-outline-variant uppercase tracking-widest text-xs"
+              >
+                Memuat data laboratorium...
+              </td>
+            </tr>
           </tbody>
         </table>
-        <!-- Pagination Footer -->
-        <div
-          class="px-6 py-5 flex items-center justify-between border-t border-outline-variant/50 bg-surface-container/50"
-        >
-          <p class="text-xs text-on-surface-variant uppercase tracking-widest">
-            Showing 3 of 128 products
-          </p>
-          <div class="flex gap-2">
-            <button
-              class="px-4 py-2 border border-outline-variant/30 text-outline hover:text-primary hover:border-primary transition-all text-xs uppercase tracking-widest font-label-md"
-            >
-              Previous
-            </button>
-            <button
-              class="px-4 py-2 bg-primary/10 border border-primary text-primary text-xs uppercase tracking-widest font-label-md"
-            >
-              1
-            </button>
-            <button
-              class="px-4 py-2 border border-outline-variant/30 text-on-surface-variant hover:text-primary hover:border-primary transition-all text-xs uppercase tracking-widest font-label-md"
-            >
-              2
-            </button>
-            <button
-              class="px-4 py-2 border border-outline-variant/30 text-on-surface-variant hover:text-primary hover:border-primary transition-all text-xs uppercase tracking-widest font-label-md"
-            >
-              Next
-            </button>
-          </div>
-        </div>
       </div>
     </main>
+
     <!-- Modal Form: Tambah Produk -->
     <div
       class="fixed inset-0 z-50 flex items-center justify-center hidden"
       id="productModal"
     >
-      <!-- Backdrop -->
       <div
         class="absolute inset-0 bg-black/80 backdrop-blur-sm"
         onclick="toggleModal(false)"
       ></div>
-      <!-- Form Container -->
       <div
         class="relative w-full max-w-2xl bg-surface-container border border-outline-variant shadow-2xl overflow-hidden scale-95 transition-transform duration-300"
         id="modalContainer"
@@ -421,106 +390,91 @@
             enctype="multipart/form-data"
           >
             <div class="grid grid-cols-2 gap-8">
-              <!-- Product Name -->
               <div class="col-span-2">
                 <label
                   class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
                   >Nama Produk</label
                 >
                 <input
-                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-lg text-body-lg placeholder:text-outline-variant"
-                  placeholder="e.g. Arabica Gayo High Mountain"
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-lg text-body-lg"
                   type="text"
                   name="nama"
                   required
                 />
               </div>
-              <!-- Category -->
               <div>
                 <label
                   class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
                   >Kategori</label
                 >
                 <select
-                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md"
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2"
                   name="kategori"
                   required
                 >
                   <option value="Arabika" class="bg-surface">Arabika</option>
                   <option value="Robusta" class="bg-surface">Robusta</option>
                   <option value="Teh" class="bg-surface">Teh</option>
-                  <option value="Other" class="bg-surface">
-                    Other (Lain-lain)
-                  </option>
+                  <option value="Other" class="bg-surface">Other</option>
                 </select>
               </div>
-              <!-- Price -->
               <div>
                 <label
                   class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
                   >Harga (IDR)</label
                 >
                 <input
-                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md"
-                  placeholder="0"
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2"
                   type="number"
                   name="harga"
                   required
                 />
               </div>
-              <!-- SKU -->
               <div>
                 <label
                   class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
                   >SKU</label
                 >
                 <input
-                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md"
-                  placeholder="TT-PRD-XXX"
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2"
                   type="text"
                   name="sku"
                   required
                 />
               </div>
-              <!-- Stock -->
               <div>
                 <label
                   class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
                   >Stok Awal</label
                 >
                 <input
-                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md"
-                  placeholder="0"
+                  class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2"
                   type="number"
                   name="stok"
                   required
                 />
               </div>
             </div>
-            <!-- Description -->
             <div>
               <label
                 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest block mb-2"
                 >Deskripsi &amp; Catatan Rasa</label
               >
               <textarea
-                class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2 font-body-md text-body-md placeholder:text-outline-variant"
-                placeholder="Describe the profile, notes, and origins..."
+                class="w-full bg-transparent border-0 border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface px-0 py-2"
                 rows="3"
                 name="deskripsi"
               ></textarea>
             </div>
-            <!-- Image Upload -->
             <div
-              class="border-2 border-dashed border-outline-variant/30 py-8 flex flex-col items-center justify-center rounded-sm hover:border-primary transition-colors cursor-pointer group"
+              class="border-2 border-dashed border-outline-variant/30 py-8 flex flex-col items-center justify-center rounded-sm hover:border-primary transition-colors cursor-pointer"
               onclick="document.getElementById('input-gambar').click()"
             >
-              <span
-                class="material-symbols-outlined text-outline group-hover:text-primary transition-colors text-[40px]"
+              <span class="material-symbols-outlined text-outline text-[40px]"
                 >add_photo_alternate</span
               >
               <p
-                class="text-xs uppercase tracking-widest text-outline group-hover:text-primary transition-colors mt-2"
+                class="text-xs uppercase tracking-widest text-outline mt-2"
                 id="label-gambar"
               >
                 Upload Product Image
@@ -537,14 +491,14 @@
             </div>
             <div class="flex justify-end gap-6 pt-4">
               <button
-                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest hover:text-on-surface transition-colors"
+                class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest"
                 onclick="toggleModal(false)"
                 type="button"
               >
                 Batal
               </button>
               <button
-                class="px-12 py-3 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all"
+                class="px-12 py-3 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-widest hover:opacity-90 transition-all"
                 type="submit"
               >
                 Simpan Produk
@@ -554,27 +508,24 @@
         </div>
       </div>
     </div>
-    <script>
-      // URL Server Backend Node.js
-      const API_URL = "http://localhost:5000/api/products";
 
-      // --- INTERAKSI UI MODAL ---
+    <!-- LOGIKA SCRIPT INTEGRASI BACKEND -->
+    <script>
+      // PERBAIKAN: Menggunakan rute relatif Vercel
+      const API_URL = "/api/products";
+
       function toggleModal(show) {
         const modal = document.getElementById("productModal");
         const container = document.getElementById("modalContainer");
-
         if (show) {
           modal.classList.remove("hidden");
-          setTimeout(() => {
-            container.classList.remove("scale-95", "opacity-0");
-            container.classList.add("scale-100", "opacity-100");
-          }, 10);
+          setTimeout(
+            () => container.classList.remove("scale-95", "opacity-0"),
+            10,
+          );
         } else {
           container.classList.add("scale-95", "opacity-0");
-          container.classList.remove("scale-100", "opacity-100");
-          setTimeout(() => {
-            modal.classList.add("hidden");
-          }, 300);
+          setTimeout(() => modal.classList.add("hidden"), 300);
         }
       }
 
@@ -582,82 +533,77 @@
         const label = document.getElementById("label-gambar");
         if (input.files && input.files[0]) {
           label.innerText = `Terpilih: ${input.files[0].name}`;
-          label.classList.add("text-primary");
         }
       }
 
-      // --- LOGIKA BACKEND INTEGRATION (FETCH) ---
+      // AMBIL DATA PRODUK
       async function muatProdukAdmin() {
         try {
-          const respon = await fetch(API_URL);
+          const token = localStorage.getItem("adminToken");
+          const respon = await fetch(API_URL, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
           const data = await respon.json();
           const tbody = document.getElementById("daftar-produk-admin");
 
-          if (data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6" class="px-6 py-10 text-center text-outline-variant uppercase tracking-widest text-xs">Belum ada produk di laboratorium database.</td></tr>`;
+          if (!data || data.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="6" class="px-6 py-10 text-center text-outline-variant uppercase tracking-widest text-xs">Belum ada produk di database.</td></tr>`;
             return;
           }
 
           tbody.innerHTML = data
-            .map(
-              (produk) => `
-        <tr class="hover:bg-surface-container-highest/30 transition-colors group">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 bg-surface-container border border-outline-variant rounded overflow-hidden">
-                <img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="http://localhost:5000/uploads/${produk.gambar}" alt="${produk.nama}" />
-              </div>
-              <div>
-                <h4 class="font-headline-sm text-headline-sm text-on-surface leading-tight">${produk.nama}</h4>
-                <p class="font-label-md text-label-md text-secondary/70">${produk.kategori}</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4">
-            <span class="font-body-md text-body-md text-on-surface-variant">LAB-PRD-${produk._id.slice(-4).toUpperCase()}</span><br />
-            <span class="text-xs text-outline uppercase tracking-wider">Tangan Tengen Storage</span>
-          </td>
-          <td class="px-6 py-4">
-            <span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border border-secondary-container text-secondary bg-secondary-container/10">Artisanal Batch</span>
-          </td>
-          <td class="px-6 py-4">
-            <span class="text-xs text-on-surface-variant">Available</span>
-          </td>
-          <td class="px-6 py-4 font-label-md text-label-md text-primary">
-            Katalog Menu
-          </td>
-          <td class="px-6 py-4 text-right">
-            <div class="flex justify-end gap-2">
-              <button onclick="hapusProduk('${produk._id}')" class="w-10 h-10 flex items-center justify-center rounded hover:bg-error/20 hover:text-error transition-colors text-on-surface-variant" title="Hapus Produk">
-                <span class="material-symbols-outlined text-[20px]">delete</span>
-              </button>
-            </div>
-          </td>
-        </tr>
-      `,
-            )
+            .map((produk) => {
+              // Deteksi gambar pintar (URL Vercel Blob vs Uploads Lokal)
+              const srcGambar = produk.gambar.startsWith("http")
+                ? produk.gambar
+                : `/api/uploads/${produk.gambar}`;
+
+              return `
+                <tr class="hover:bg-surface-container-highest/30 transition-colors group">
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-4">
+                      <div class="w-14 h-14 bg-surface-container border border-outline-variant rounded overflow-hidden">
+                        <img class="w-full h-full object-cover" src="${srcGambar}" alt="${produk.nama}" />
+                      </div>
+                      <div>
+                        <h4 class="font-headline-sm text-headline-sm text-on-surface leading-tight">${produk.nama}</h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 font-mono text-sm text-on-surface-variant">${produk.sku || "N/A"}</td>
+                  <td class="px-6 py-4"><span class="text-xs text-secondary bg-secondary-container/20 px-3 py-1 rounded-full border border-secondary-container/40">${produk.kategori}</span></td>
+                  <td class="px-6 py-4 text-on-surface-variant">${produk.stok || 0} Pcs</td>
+                  <td class="px-6 py-4 text-primary font-bold">Rp ${(produk.harga || 0).toLocaleString("id-ID")}</td>
+                  <td class="px-6 py-4 text-right">
+                    <button onclick="hapusProduk('${produk._id}')" class="w-10 h-10 inline-flex items-center justify-center rounded hover:bg-error/20 hover:text-error text-on-surface-variant transition-colors">
+                      <span class="material-symbols-outlined text-[20px]">delete</span>
+                    </button>
+                  </td>
+                </tr>
+              `;
+            })
             .join("");
         } catch (error) {
           console.error("Gagal memuat produk:", error);
         }
       }
 
+      // TAMBAH DATA PRODUK (FORM SUBMIT)
       const formTambah = document.getElementById("form-tambah-produk");
       formTambah.addEventListener("submit", async (e) => {
         e.preventDefault();
-
+        const token = localStorage.getItem("adminToken");
         const dataForm = new FormData(formTambah);
 
         try {
           const respon = await fetch(API_URL, {
             method: "POST",
+            headers: { Authorization: `Bearer ${token}` }, // Sertakan Token Keamanan
             body: dataForm,
           });
 
           if (respon.ok) {
-            alert(
-              "Produk baru berhasil didaftarkan ke Laboratorium Tangan Tengen!",
-            );
+            alert("Produk baru berhasil disimpan ke database cloud!");
             formTambah.reset();
             document.getElementById("label-gambar").innerText =
               "Upload Product Image";
@@ -665,29 +611,31 @@
             muatProdukAdmin();
           } else {
             const err = await respon.json();
-            alert("Gagal menyimpan: " + err.message);
+            alert(
+              "Gagal menyimpan: " +
+                (err.message || "Terjadi kesalahan internal"),
+            );
           }
         } catch (error) {
           console.error("Error kirim data:", error);
-          alert("Koneksi gagal, pastikan server backend menyala!");
+          alert("Gagal mengirim data. Pastikan koneksi internet Anda stabil.");
         }
       });
 
+      // HAPUS DATA PRODUK
       async function hapusProduk(id) {
-        if (
-          confirm(
-            "Apakah Anda yakin ingin melenyapkan produk ini dari katalog?",
-          )
-        ) {
+        if (confirm("Apakah Anda yakin ingin menghapus produk ini?")) {
+          const token = localStorage.getItem("adminToken");
           try {
             const respon = await fetch(`${API_URL}/${id}`, {
               method: "DELETE",
+              headers: { Authorization: `Bearer ${token}` }, // Sertakan Token Keamanan
             });
             if (respon.ok) {
               alert("Produk berhasil dihapus!");
               muatProdukAdmin();
             } else {
-              alert("Gagal menghapus produk.");
+              alert("Gagal menghapus produk. Akses ditolak.");
             }
           } catch (error) {
             console.error("Error hapus:", error);
@@ -695,15 +643,14 @@
         }
       }
 
-      window.addEventListener("DOMContentLoaded", muatProdukAdmin);
+      // LOGOUT ACTION
+      document.getElementById("btn-logout").addEventListener("click", (e) => {
+        e.preventDefault();
+        localStorage.removeItem("adminToken");
+        window.location.href = "login.html";
+      });
 
-      const searchInput = document.querySelector('input[type="text"]');
-      searchInput.addEventListener("focus", () => {
-        searchInput.parentElement.classList.add("border-primary");
-      });
-      searchInput.addEventListener("blur", () => {
-        searchInput.parentElement.classList.remove("border-primary");
-      });
+      window.addEventListener("DOMContentLoaded", muatProdukAdmin);
     </script>
   </body>
 </html>

@@ -13,10 +13,6 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script id="tailwind-config">
       tailwind.config = {
@@ -195,7 +191,6 @@
             >Tentang Kami</a
           >
         </nav>
-        <!-- Tombol Hubungi Kami langsung mengarah ke WhatsApp admin -->
         <a
           href="https://wa.me/628xxxxxxxxxx?text=Halo%20Tangan%20Tengen%20Roastery,%20saya%20ingin%20bertanya%20mengenai%20layanan%20Anda."
           target="_blank"
@@ -205,6 +200,7 @@
         </a>
       </div>
     </header>
+
     <!-- Hero Section / Title -->
     <main class="pt-32 pb-16">
       <section class="px-margin-desktop max-w-container-max mx-auto mb-16">
@@ -223,6 +219,7 @@
           </p>
         </div>
       </section>
+
       <!-- Filters -->
       <section
         class="px-margin-desktop max-w-container-max mx-auto mb-12 overflow-x-auto whitespace-nowrap scrollbar-hide"
@@ -255,306 +252,20 @@
           </button>
         </div>
       </section>
+
       <!-- Product Grid -->
       <section
         id="katalog-kopi"
         class="px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter"
       >
-        <!-- Product Card 1 -->
+        <!-- Data produk akan di-render di sini secara otomatis dari database -->
         <div
-          class="group bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden card-hover transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
+          class="col-span-full text-center text-on-surface-variant font-body-md py-8"
         >
-          <div
-            class="relative aspect-square overflow-hidden bg-surface-container-highest"
-          >
-            <img
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              data-alt="A macro close-up of dark roasted specialty coffee beans inside a minimalist black packaging with a gold stamped logo. The lighting is dramatic and warm, highlighting the oily texture of the beans. The background is a blurred artisan roastery setting with deep brown and ochre tones, creating a premium and tactile atmosphere."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuARYDP5eBgWKS4bJQhyQbXHlXmx7lGidcyjCoHVu0bdGtwmWFJvFk06PdNjk3kkHyhMJOpNM0WLlPxCKXJxSLODqeE1HnIgs0XO3g1a6L8uPoNhANUdc3NH5czZI-sD2TkbrMD5yi33paeuxfDJLMix-qT-wwbeWfWukCxi77tMwus_P4rQ8-1hM8N1uPPJroUUGps9SoAAT-CWs3fwX8UxWpTP5G5quFy17mXP7NeRZPuHsZiz00t8rGfLs440Bmk7QifBP6LdyGbV"
-            />
-            <div
-              class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
-            >
-              Signature Blend
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3
-                class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors"
-              >
-                Tenggara Blend
-              </h3>
-              <span class="font-label-md text-primary">Rp 145k</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Dark Chocolate</span
-              >
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Hazelnut</span
-              >
-            </div>
-            <p class="text-on-surface-variant font-body-md mb-6 line-clamp-2">
-              A bold and sophisticated blend of Sumatra Mandheling and Gayo
-              beans. Perfect for milk-based espresso beverages.
-            </p>
-            <a
-              class="block w-full bg-primary-container text-on-primary-container text-center py-3 font-label-md text-label-md rounded-DEFAULT hover:opacity-90 active:scale-95 transition-all"
-              href="https://wa.me/628123456789?text=Halo%20Tangan%20Tengen,%20saya%20ingin%20memesan%20Tenggara%20Blend"
-            >
-              Beli Sekarang
-            </a>
-          </div>
-        </div>
-        <!-- Product Card 2 -->
-        <div
-          class="group bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden card-hover transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
-        >
-          <div
-            class="relative aspect-square overflow-hidden bg-surface-container-highest"
-          >
-            <img
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              data-alt="A minimalist overhead shot of a light roasted coffee package on a dark slate surface. The package features elegant serif typography in gold. Beside it, some raw coffee cherries are scattered. The lighting is soft, moody, and highlights the tactile texture of the packaging material. Deep brown and gold accents dominate the palette."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuClu3hFTf-qtZon_QAIdNgOrM9DMvlp4aUI8uczuXFXmoGJpPQPSP7M_2wTeYhgCrDKTePwhkyUeX1gDO4XiVH_TQXKFxIJE8fsUTMSsRr4fjHLjS-vKTJ3YC7A9TSnjtyUAXXOfkE0AX2FX9ZG66DSy71LlHYxdpc06aDHsKPR3m5VbpnPCLXFGMu6Nw3YULpYn71elpe1HrH4QLtxzxlElB2B0YE896-F0wMSZ0b4iibxCPZQLCyxsx0IIdIJmu2PiiSKJkNlsZeE"
-            />
-            <div
-              class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
-            >
-              Single Origin
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3
-                class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors"
-              >
-                Ethiopia Yirgacheffe
-              </h3>
-              <span class="font-label-md text-primary">Rp 185k</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Jasmine</span
-              >
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Peach</span
-              >
-            </div>
-            <p class="text-on-surface-variant font-body-md mb-6 line-clamp-2">
-              High-altitude beans with floral aroma and complex acidity. Washed
-              process from the Gedeo zone.
-            </p>
-            <a
-              class="block w-full bg-primary-container text-on-primary-container text-center py-3 font-label-md text-label-md rounded-DEFAULT hover:opacity-90 active:scale-95 transition-all"
-              href="https://wa.me/628123456789?text=Halo%20Tangan%20Tengen,%20saya%20ingin%20memesan%20Ethiopia%20Yirgacheffe"
-            >
-              Beli Sekarang
-            </a>
-          </div>
-        </div>
-        <!-- Product Card 3 -->
-        <div
-          class="group bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden card-hover transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
-        >
-          <div
-            class="relative aspect-square overflow-hidden bg-surface-container-highest"
-          >
-            <img
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              data-alt="A premium black glass bottle of cold brew coffee standing on a dark wooden bar counter. The condensation on the bottle catches the warm golden light from a nearby lamp. The label is minimalist with cream-colored typography. The overall aesthetic is artisanal and nocturnal, focusing on high-end beverage presentation."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQjpf2GpM5yadoMsZIv0jGE6eh2_IsTsXTvXC78pEspqO9gTts11pXdPmlsgxVWsk7NT0DzZvjt0uWfmfYdKnMTq_P229i1iRIAjASib4H5R8W6-7ItOnGHMyQX7DbHkDsWWhIkAMqKaX_XjNFKAzU4FT8ePi7ey2jxdLbsB8v_-xjCHpbeMxiAebjdoeoTr2VSFWryzSgXjg_g-jOiFTvxPGIrbk5WJfqpWhY8XwLu2LqwGJ5OVMmQHB59PGsAw0et3r-Fh84FG9b"
-            />
-            <div
-              class="absolute top-4 left-4 bg-tertiary text-on-tertiary px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
-            >
-              Beverage
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3
-                class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors"
-              >
-                Midnight Cold Brew
-              </h3>
-              <span class="font-label-md text-primary">Rp 45k</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Smooth</span
-              >
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Low Acidity</span
-              >
-            </div>
-            <p class="text-on-surface-variant font-body-md mb-6 line-clamp-2">
-              18-hour slow steeped concentrate. Silky mouthfeel with natural
-              sweetness and zero bitterness.
-            </p>
-            <a
-              class="block w-full bg-primary-container text-on-primary-container text-center py-3 font-label-md text-label-md rounded-DEFAULT hover:opacity-90 active:scale-95 transition-all"
-              href="https://wa.me/628123456789?text=Halo%20Tangan%20Tengen,%20saya%20ingin%20memesan%20Midnight%20Cold%20Brew"
-            >
-              Beli Sekarang
-            </a>
-          </div>
-        </div>
-        <!-- Product Card 4 -->
-        <div
-          class="group bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden card-hover transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
-        >
-          <div
-            class="relative aspect-square overflow-hidden bg-surface-container-highest"
-          >
-            <img
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              data-alt="A heavy-weight ceramic coffee mug in deep matte black, featuring a subtle engraved Tangan Tengen logo. It sits on a rough-hewn wooden table beside a vintage copper coffee dripper. The lighting is cinematic, casting long shadows and highlighting the earthy textures of the pottery. Dark brown, gold, and charcoal tones define the scene."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu2KAPK3BhF_TzK3pwFWPfT1RVKa3dOWO1oOz1jAZXKJVskjNb3Nr8XGAFdSIBxR6h_nt-XVXG9SbuMxpcCsehdfUtlH9ePEX7F8AHluea710a0NyGuf00kz5Zp781HuCksxoMPh5IwojJ4Dq9fhlCJJbtx6M-UJr3jV5CP1_RXwPZL0PBVytKlK4iWgR7R-FRduAl00iAG71MeT6yWECeWU1HC7wa9RyLrUtCgtu4LiL_9aC5JjQ9OsmzTiXp4GSOnAy4azHLbipC"
-            />
-            <div
-              class="absolute top-4 left-4 bg-outline-variant text-on-surface px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
-            >
-              Merchandise
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3
-                class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors"
-              >
-                Artisan Ceramic Mug
-              </h3>
-              <span class="font-label-md text-primary">Rp 120k</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Handmade</span
-              >
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Limited Edition</span
-              >
-            </div>
-            <p class="text-on-surface-variant font-body-md mb-6 line-clamp-2">
-              Hand-thrown ceramic mug with a textured basalt glaze. Each piece
-              is unique and retains heat perfectly.
-            </p>
-            <a
-              class="block w-full bg-primary-container text-on-primary-container text-center py-3 font-label-md text-label-md rounded-DEFAULT hover:opacity-90 active:scale-95 transition-all"
-              href="https://wa.me/628123456789?text=Halo%20Tangan%20Tengen,%20saya%20ingin%20memesan%20Artisan%20Ceramic%20Mug"
-            >
-              Beli Sekarang
-            </a>
-          </div>
-        </div>
-        <!-- Product Card 5 -->
-        <div
-          class="group bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden card-hover transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
-        >
-          <div
-            class="relative aspect-square overflow-hidden bg-surface-container-highest"
-          >
-            <img
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              data-alt="A coffee package featuring a bright illustration of tropical fruits and berries, representing the flavor profile. The bag is white with gold foil accents. It's placed on a clean, light-filled marble countertop in a modern kitchen. The lighting is airy and high-key, contrasting with the dark roastery brand colors elsewhere but maintaining the premium gold highlights."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGApXIOH1odU7B_UPxChiVfRZ-x4RIcJStNj-tkj3mqzuAQdkyoveTXt7wd0nqWfLxZCq5x4eU8M5aslx-9X4BjAVbZZ53gGfcb7tU-sjutanTf_oaigRUrBIrwg6GuOp-KzR1LgZQAu0ArRzrG2nULT_dNtcZaGpP6sFB0SJ5Cu8OjCBMQChlY3S7R7C_ImQzf1VR9cBDh-pkCDT0pcW95_QY01KcVZobZxIA8VDBf_POpRXdYWQizUtxnARjwtDM-gdsgD5wk38R"
-            />
-            <div
-              class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
-            >
-              Single Origin
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3
-                class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors"
-              >
-                Bali Kintamani
-              </h3>
-              <span class="font-label-md text-primary">Rp 130k</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Citrus</span
-              >
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Sweet Honey</span
-              >
-            </div>
-            <p class="text-on-surface-variant font-body-md mb-6 line-clamp-2">
-              Natural process beans from the volcanic highlands of Bali. Known
-              for its distinct citrus and fruity notes.
-            </p>
-            <a
-              class="block w-full bg-primary-container text-on-primary-container text-center py-3 font-label-md text-label-md rounded-DEFAULT hover:opacity-90 active:scale-95 transition-all"
-              href="https://wa.me/628123456789?text=Halo%20Tangan%20Tengen,%20saya%20ingin%20memesan%20Bali%20Kintamani"
-            >
-              Beli Sekarang
-            </a>
-          </div>
-        </div>
-        <!-- Product Card 6 -->
-        <div
-          class="group bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden card-hover transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5"
-        >
-          <div
-            class="relative aspect-square overflow-hidden bg-surface-container-highest"
-          >
-            <img
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              data-alt="A close-up of a pour-over coffee set including a glass carafe and a white ceramic dripper. Freshly brewed coffee is dripping through a paper filter. The background is a moody workshop with metallic tools and wooden furniture. Steam is visible, catching the light. The color palette is rich in browns, blacks, and glowing gold accents."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC34xNbUhIaUIC8Imy9WA-yGCcnpIh9nhm7l6TaV1QqM5MUjRfAI4l3B-FhP44EIN-k6-aEddyAnQK-P88DpeFzX1pok86y82P1AYh1LZ2RSWpiChdbIWdbgji1qk5CNlXGDfb9bUcLD0QOeBUgQHb1uZ1GItqDR7Pj36QOLk-BvHuW3r5RydhRcXJvxf3mRBi1R5XaE-wQE-E8yTKF9jU3sX3FMNGcRNfOqSsvv_Lei16Szqv82mPJ5SSG2dTjMSMpXSvpvIlX8xmg"
-            />
-            <div
-              class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 text-[10px] font-bold tracking-widest uppercase"
-            >
-              Signature Blend
-            </div>
-          </div>
-          <div class="p-6">
-            <div class="flex justify-between items-start mb-2">
-              <h3
-                class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors"
-              >
-                Heritage Espresso
-              </h3>
-              <span class="font-label-md text-primary">Rp 115k</span>
-            </div>
-            <div class="flex gap-2 mb-4">
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Caramel</span
-              >
-              <span
-                class="text-[10px] font-label-md px-2 py-0.5 border border-outline-variant rounded-full text-on-surface-variant uppercase"
-                >Molasses</span
-              >
-            </div>
-            <p class="text-on-surface-variant font-body-md mb-6 line-clamp-2">
-              The house blend that started it all. A reliable, heavy-bodied
-              coffee with a sweet caramel finish.
-            </p>
-            <a
-              class="block w-full bg-primary-container text-on-primary-container text-center py-3 font-label-md text-label-md rounded-DEFAULT hover:opacity-90 active:scale-95 transition-all"
-              href="https://wa.me/628123456789?text=Halo%20Tangan%20Tengen,%20saya%20ingin%20memesan%20Heritage%20Espresso"
-            >
-              Beli Sekarang
-            </a>
-          </div>
+          Memuat menu produk...
         </div>
       </section>
+
       <!-- Newsletter / CTA -->
       <section class="mt-24 px-margin-desktop max-w-container-max mx-auto">
         <div
@@ -596,6 +307,7 @@
         </div>
       </section>
     </main>
+
     <!-- Footer -->
     <footer
       id="footer-info"
@@ -604,9 +316,8 @@
       <div
         class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-gutter px-6 md:px-margin-desktop max-w-container-max mx-auto"
       >
-        <!-- Kolom 1: Logo, Deskripsi, Sosial Media (Lebar: 5 Kolom) -->
+        <!-- Kolom 1 -->
         <div class="md:col-span-5 flex flex-col gap-6">
-          <!-- Menggunakan logo yang sama dengan header -->
           <a class="flex items-center" href="index.html">
             <img
               src="../assets/img/logottr.png"
@@ -620,7 +331,6 @@
             Dari gerobak kecil hingga kurasi artisanal terbaik, kami tumbuh jadi
             teman yang menemani harimu, di mana pun kamu berada.
           </p>
-          <!-- Sosial Media Menggunakan Font Icon Material Icons bawaan template Anda -->
           <div class="flex gap-4 items-center mt-2">
             <a
               href="https://instagram.com/tangantengen"
@@ -647,7 +357,7 @@
           </div>
         </div>
 
-        <!-- Kolom 2: Halaman Navigasi (Lebar: 3 Kolom) -->
+        <!-- Kolom 2 -->
         <div class="md:col-span-3 flex flex-col gap-4">
           <h4
             class="font-headline-sm text-[20px] text-primary font-bold tracking-wide"
@@ -683,7 +393,7 @@
           </div>
         </div>
 
-        <!-- Kolom 3: Hubungi Kami & Sertifikasi Halal (Lebar: 4 Kolom) -->
+        <!-- Kolom 3 -->
         <div class="md:col-span-4 flex flex-col gap-6">
           <div class="flex flex-col gap-4">
             <h4
@@ -721,7 +431,7 @@
             </div>
           </div>
 
-          <!-- Sertifikasi Halal Section (Sesuai Layout Gambar Ide) -->
+          <!-- Sertifikasi Halal -->
           <div
             class="flex flex-col gap-3 border-t border-outline-variant/20 pt-4"
           >
@@ -731,7 +441,6 @@
               Sertifikasi Halal
             </h5>
             <div class="flex items-center gap-4">
-              <!-- Placeholder Logo Halal (Menggunakan Icon/Grafis sederhana bergaya Emas) -->
               <div
                 class="w-12 h-12 border border-primary/40 rounded flex flex-col items-center justify-center p-1 text-center bg-surface"
               >
@@ -758,11 +467,10 @@
         </div>
       </div>
 
-      <!-- Hak Cipta & Slogan Bagian Bawah -->
+      <!-- Hak Cipta -->
       <div
         class="mt-16 px-6 md:px-margin-desktop max-w-container-max mx-auto flex flex-col sm:flex-row justify-between items-center border-t border-outline-variant/10 pt-8 gap-4"
       >
-        <!-- Slogan di kiri bawah sesuai contoh gambar -->
         <p class="font-headline-sm text-lg text-on-surface tracking-wide">
           Menemani <span class="text-primary italic">Harimu.</span>
         </p>
@@ -771,6 +479,7 @@
         </p>
       </div>
     </footer>
+
     <script>
       // Smooth scroll implementation
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -811,20 +520,19 @@
         }
       });
     </script>
+
+    <!-- KODE PERBAIKAN FETCH API UNTUK CATALOG UTAMA -->
     <script>
-      // Fungsi untuk mengambil data dari backend
       async function ambilDataProduk() {
+        const container = document.getElementById("katalog-kopi");
         try {
-          // Panggil API backend yang sudah kita buat di port 5000
-          const respon = await fetch("http://localhost:5000/api/products");
+          // KODE DIUBAH: Menggunakan rute relatif Vercel (bukan localhost:5000)
+          const respon = await fetch("/api/products");
           const daftarProduk = await respon.json();
 
-          const container = document.getElementById("katalog-kopi");
-
-          // Jika database masih kosong
           if (!daftarProduk || daftarProduk.length === 0) {
             container.innerHTML =
-              '<div class="col-span-full text-center text-on-surface-variant font-body-md">Belum ada menu yang tersedia saat ini.</div>';
+              '<div class="col-span-full text-center text-on-surface-variant font-body-md py-8">Belum ada menu yang tersedia saat ini.</div>';
             return;
           }
 
@@ -835,12 +543,18 @@
               const pesanWA = encodeURIComponent(
                 `Halo Tangan Tengen Roastery, saya tertarik untuk memesan produk: ${produk.nama}`,
               );
+
+              // KODE DINAMIS: Mendukung Vercel Blob internet (http...) maupun uploads lokal biasa
+              const srcGambar = produk.gambar.startsWith("http")
+                ? produk.gambar
+                : `/api/uploads/${produk.gambar}`;
+
               return `
                 <div class="group bg-surface-container-low border border-outline-variant/10 rounded-lg overflow-hidden card-hover transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5">
                   <div class="relative aspect-square overflow-hidden bg-surface-container-highest">
                     <img
                       class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      src="http://localhost:5000/uploads/${produk.gambar}"
+                      src="${srcGambar}"
                       alt="${produk.nama}"
                     />
                     <div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 text-[10px] font-bold tracking-widest uppercase">
@@ -870,10 +584,9 @@
             .join("");
         } catch (error) {
           console.error("Gagal mengambil data:", error);
-          const container = document.getElementById("katalog-kopi");
           if (container) {
             container.innerHTML =
-              '<div class="col-span-full text-center text-on-surface-variant font-body-md">Gagal memuat menu. Pastikan server backend sudah berjalan.</div>';
+              '<div class="col-span-full text-center text-error font-body-md py-8">Gagal memuat produk. Terjadi masalah hubungan dengan server database cloud.</div>';
           }
         }
       }

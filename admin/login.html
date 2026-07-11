@@ -295,7 +295,7 @@
           <span
             class="font-label-md text-[10px] text-on-surface-variant/40 tracking-widest uppercase"
           >
-            © 2024 Tangan Tengen Roastery
+            © 2026 Tangan Tengen Roastery
           </span>
           <div class="flex gap-4">
             <span
@@ -312,7 +312,6 @@
     </main>
     <!-- Skrip Interaktif Fungsi Log Masuk -->
     <script>
-      // Sembunyikan atau tunjukkan kata laluan
       const togglePassword = document.getElementById("togglePassword");
       const passwordInput = document.getElementById("password");
       const eyeIcon = document.getElementById("eyeIcon");
@@ -327,7 +326,6 @@
           type === "password" ? "visibility" : "visibility_off";
       });
 
-      // Sistem Navigasi Selamat dalam persekitaran Sandbox Iframe
       function safeRedirect(page) {
         try {
           if (window.location.origin && window.location.origin !== "null") {
@@ -351,19 +349,17 @@
         }
       }
 
-      // Integrasi pengiriman data login dengan Backend Node.js
       const form = document.getElementById("loginForm");
       const alertError = document.getElementById("alertError");
       const errorMessage = document.getElementById("errorMessage");
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        alertError.classList.add("hidden"); // Sembunyikan kotak ralat terdahulu
+        alertError.classList.add("hidden");
 
         const btn = form.querySelector('button[type="submit"]');
         const originalText = btn.innerHTML;
 
-        // Paparkan animasi memuat semasa pengesahan dijalankan
         btn.innerHTML =
           '<span class="flex items-center justify-center gap-2">Mengesahkan... <span class="animate-spin material-symbols-outlined text-[16px]">progress_activity</span></span>';
         btn.classList.add("opacity-80", "cursor-not-allowed");
@@ -372,37 +368,34 @@
         const passwordValue = passwordInput.value;
 
         try {
-          const response = await fetch("http://localhost:5000/api/auth/login", {
+          // PERBAIKAN UTAMA: Mengubah rute mutlak localhost menjadi rute relatif Vercel
+          const response = await fetch("/api/auth/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              username: usernameInput, // Menggunakan data dinamis sesuai dengan yang diketik admin
-              password: passwordValue, // Menggunakan kata laluan dinamis sesuai dengan yang diketik admin
+              username: usernameInput,
+              password: passwordValue,
             }),
           });
 
           const result = await response.json();
 
           if (response.ok) {
-            // Pengesahan berjaya: Simpan token keselamatan ke storan pelayar lokal
             localStorage.setItem("adminToken", result.token);
-            // Alihkan halaman ke papan pemuka utama admin dengan selamat
             safeRedirect("dashboard.html");
           } else {
-            // Paparkan mesej ralat yang dihantar dari backend
-            errorMessage.innerText = result.message;
+            errorMessage.innerText = result.message || "Akses Ditolak!";
             alertError.classList.remove("hidden");
 
-            // Kembalikan butang ke keadaan asal
             btn.innerHTML = originalText;
             btn.classList.remove("opacity-80", "cursor-not-allowed");
           }
         } catch (error) {
           console.error("Sambungan gagal:", error);
           errorMessage.innerText =
-            "Sambungan ke pelayan gagal. Sila pastikan sistem backend telah dijalankan.";
+            "Gagal terhubung ke server cloud. Mohon periksa konfigurasi vercel.json Anda.";
           alertError.classList.remove("hidden");
 
           btn.innerHTML = originalText;
