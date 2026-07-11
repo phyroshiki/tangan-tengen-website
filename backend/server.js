@@ -26,6 +26,7 @@ const JWT_SECRET =
 app.use(cors()); // Mengizinkan HTML frontend mengakses API ini
 app.use(express.json()); // Mengizinkan server membaca data berformat JSON
 // Membuat folder 'uploads' dapat diakses secara publik lewat URL
+app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Middleware Pengaman: Memeriksa apakah admin memiliki token resmi yang valid
