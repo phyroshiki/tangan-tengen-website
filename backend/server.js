@@ -7,6 +7,7 @@ const multer = require("multer");
 const cors = require("cors");
 const path = require("path");
 const jwt = require("jsonwebtoken"); // Tambahan: Pustaka untuk membuat dan memverifikasi Token Pengaman (JWT)
+const { put } = require("@vercel/blob"); // TAMBAHAN: Import Vercel Blob
 require("dotenv").config();
 
 const app = express();
@@ -65,7 +66,7 @@ mongoose
 const ProductSchema = new mongoose.Schema(
   {
     nama: { type: String, required: true },
-    gambar: { type: String, required: true },
+    gambar: { type: String, required: true }, // Nanti bisa berisi nama file lokal atau URL penuh Vercel Blob
     deskripsi: String,
     kategori: {
       type: String,
@@ -79,18 +80,39 @@ const ProductSchema = new mongoose.Schema(
 const Product = mongoose.model("Product", ProductSchema);
 
 // ==========================================
-// 4. KONFIGURASI UPLOAD GAMBAR (Multer)
+// 4. KONFIGURASI UPLOAD GAMBAR (Multer Dinamis)
 // ==========================================
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // File foto akan disimpan di folder ini
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
+// KODE DIUBAH: Gunakan memory storage agar file disimpan sebagai Buffer sebelum ditentukan di-upload ke lokal atau cloud
+const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
+
+// Fungsi pembantu untuk memproses unggahan gambar secara dinamis
+const handleImageUpload = async (file) => {
+  // Jika token Vercel Blob terdeteksi (artinya sedang berjalan di server Vercel)
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    const blob = await put(
+      `products/${Date.now()}-${file.originalname}`,
+      file.buffer,
+      {
+        access: "public",
+      },
+    );
+    return blob.url; // Mengembalikan URL internet penuh (https://...)
+  } else {
+    // Jika di komputer lokal, simpan file secara manual ke folder uploads lokal
+    const fs = require("fs");
+    const filename = Date.now() + path.extname(file.originalname);
+    const uploadPath = path.join(__dirname, "uploads", filename);
+
+    // Pastikan folder uploads ada
+    if (!fs.existsSync(path.join(__dirname, "uploads"))) {
+      fs.mkdirSync(path.join(__dirname, "uploads"));
+    }
+
+    fs.writeFileSync(uploadPath, file.buffer);
+    return filename; // Mengembalikan nama file lokal biasa
+  }
+};
 
 // ==========================================
 // 5. API ROUTES (AUTH)
@@ -132,7 +154,7 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
-// [POST] - Tambah Produk Baru (DIPROTEKSI: Hanya Admin Terverifikasi yang Bisa)
+// [POST] - Tambah Produk Baru (DIPROTEKSI)
 app.post(
   "/api/products",
   verifikasiToken,
@@ -145,9 +167,12 @@ app.post(
           .json({ message: "Gambar produk wajib diunggah!" });
       }
 
+      // Memproses upload gambar menggunakan fungsi pembantu dinamis
+      const gambarResult = await handleImageUpload(req.file);
+
       const newProduct = new Product({
         nama: req.body.nama,
-        gambar: req.file.filename,
+        gambar: gambarResult, // Bisa berupa nama file lokal atau URL penuh Vercel Blob
         deskripsi: req.body.deskripsi,
         kategori: req.body.kategori,
       });
@@ -165,7 +190,7 @@ app.post(
   },
 );
 
-// [PUT] - Edit/Update Produk Berdasarkan ID (DIPROTEKSI: Hanya Admin Terverifikasi yang Bisa)
+// [PUT] - Edit/Update Produk Berdasarkan ID (DIPROTEKSI)
 app.put(
   "/api/products/:id",
   verifikasiToken,
@@ -183,9 +208,9 @@ app.put(
         kategori: req.body.kategori || product.kategori,
       };
 
-      // Jika admin mengunggah gambar baru, ganti nama gambarnya
+      // Jika admin mengunggah gambar baru, proses ulang gambarnya
       if (req.file) {
-        updateData.gambar = req.file.filename;
+        updateData.gambar = await handleImageUpload(req.file);
       }
 
       const updatedProduct = await Product.findByIdAndUpdate(
@@ -202,7 +227,7 @@ app.put(
   },
 );
 
-// [DELETE] - Hapus Produk Berdasarkan ID (DIPROTEKSI: Hanya Admin Terverifikasi yang Bisa)
+// [DELETE] - Hapus Produk Berdasarkan ID (DIPROTEKSI)
 app.delete("/api/products/:id", verifikasiToken, async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
