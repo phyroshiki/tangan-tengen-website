@@ -751,7 +751,7 @@
                 <div class="aspect-[3/4] mb-6 overflow-hidden bg-surface-container-high relative">
                   <img
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    src="/api/uploads/${item.gambar}"
+                    src="${item.gambar.startsWith("http") ? item.gambar : "/api/uploads/" + item.gambar}"
                     alt="${item.nama}"
                   />
                   <div class="absolute top-4 right-4">
